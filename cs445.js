@@ -21,7 +21,7 @@ function pageOnload() {
           let id = data.id;
           let template = `     
             <div class="col">
-                <h3> user information:</h3>
+                <h3>User information:</h3>
                 <p>name: ${data.name}</p>
                 <p>Email:${data.email} </p>
                 <p style="color: red;font-size: larger;">Address</p>
@@ -31,17 +31,41 @@ function pageOnload() {
                 <button id="idBut" value="${id} " style="background-color: aqua;">Get posts</button>
             </div>     
         `;
-          const div = document.createElement("div");
+          const userDiv = document.createElement("user-list");
           //div.classList = "row border-top";
-          div.innerHTML = template;
-          userList.append(div);
+          userDiv.innerHTML = template;
+          userList.append(userDiv);
           let getPost = document.getElementById("idBut");
-          getPost.onclick = function () {
-            alert(getPost.value);
-          };
+          getPost.onclick = fetchUserPost;
+          async function fetchUserPost() {
+            let userId = getPost.value;
+            let userPost = document.getElementById("user-post");
+            userPost.innerHTML = "";
+            let postResult = await fetch(
+              "http://jsonplaceholder.typicode.com/posts"
+            );
+            let postJson = await postResult.json();
+            console.log(postJson);
+            from(postJson)
+              .pipe(filter((elem) => elem.userId === Number(userId)))
+              .subscribe((postData) => {
+                console.log(postData);
+                let id = postData.id;
+                let template = `     
+              <div class="col">
+                  <h3> User post:</h3>
+                  <p>Title: ${postData.title}</p>
+                  <p>Body:${postData.body} </p>
+                  <button id="commentBut" value="${id} " style="background-color: aqua;">Comments</button>
+              </div>     
+          `;
+                const divPost = document.createElement("user-post");
+                divPost.innerHTML = template;
+                userPost.appendChild(divPost);
+              });
+          }
         });
     }
-    
   }
 }
 
