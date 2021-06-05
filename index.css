@@ -1,0 +1,32 @@
+*{
+    box-sizing: border-box;
+}
+body, html{
+    margin: 0;
+    padding: 0;
+}
+.user-web{
+    display: flex;
+    flex-direction: column;
+}
+.seach-div{
+    margin-top: 30px;
+    /* text-align: center; */
+    margin-left: 250px;
+    flex: 1;
+}
+.user{
+    display: flex;
+    flex: 4;
+    margin-top: 30px;
+    margin-left: 40px;
+    flex-direction: row;
+}
+.users-information{
+    flex: 1;
+    background-color:azure
+}
+.user-posts{
+    flex: 3;
+    background-color: bisque;
+}
