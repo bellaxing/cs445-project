@@ -24,9 +24,9 @@ body, html{
 }
 .users-information{
     flex: 1;
-    background-color:azure
+    /* background-color:azure */
 }
 .user-posts{
     flex: 3;
-    background-color: bisque;
+    /* background-color: bisque; */
 }
