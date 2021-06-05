@@ -13,13 +13,12 @@ function pageOnload() {
       userList.innerHTML = "";
       let result = await fetch("http://jsonplaceholder.typicode.com/users");
       let userFetch = await result.json();
-      console.log(userFetch);
       const user = from(userFetch);
       user
         .pipe(filter((element) => element.id === userId))
         .subscribe((data) => {
           let id = data.id;
-          let template = `     
+          let userTemplate = `     
             <div class="col">
                 <h3>User information:</h3>
                 <p>name: ${data.name}</p>
@@ -33,40 +32,69 @@ function pageOnload() {
         `;
           const userDiv = document.createElement("user-list");
           //div.classList = "row border-top";
-          userDiv.innerHTML = template;
+          userDiv.innerHTML = userTemplate;
           userList.append(userDiv);
           let getPost = document.getElementById("idBut");
           getPost.onclick = fetchUserPost;
+          let userPost = document.getElementById("user-post");
+          userPost.innerHTML = "";
           async function fetchUserPost() {
             let userId = getPost.value;
-            let userPost = document.getElementById("user-post");
-            userPost.innerHTML = "";
             let postResult = await fetch(
               "http://jsonplaceholder.typicode.com/posts"
             );
             let postJson = await postResult.json();
-            console.log(postJson);
+            //console.log(postJson);
             from(postJson)
               .pipe(filter((elem) => elem.userId === Number(userId)))
               .subscribe((postData) => {
                 console.log(postData);
-                let id = postData.id;
-                let template = `     
+                let postId = postData.id;
+                let userPostTemplate = `     
               <div class="col">
-                  <h3> User post:</h3>
+              <h3 style="color:blue; font-weight: bold;"> User post:</h3>
                   <p>Title: ${postData.title}</p>
                   <p>Body:${postData.body} </p>
-                  <button id="commentBut" value="${id} " style="background-color: aqua;">Comments</button>
+                  <button id="commentBut" value="${postId} " style="background-color: aqua;"> View comments</button>
+                  <div id="list-comments"> </div>
               </div>     
           `;
                 const divPost = document.createElement("user-post");
-                divPost.innerHTML = template;
-                userPost.appendChild(divPost);
+                divPost.innerHTML = userPostTemplate;
+                userPost.append(divPost);
+                let postCommentBut = document.getElementById("commentBut");
+                postCommentBut.id = "commentDisplay";
+                let userComment = document.getElementById("list-comments");
+                userComment.id = "list-of-comments";
+                postCommentBut.addEventListener("click", fetchComments, false);
+                async function fetchComments() {
+                  const commentResult = await fetch(
+                    "http://jsonplaceholder.typicode.com/comments"
+                  );
+                  const commentJson = await commentResult.json();
+                  let comId = Number(postCommentBut.value);
+                  //    console.log(commentJson)
+                  from(commentJson)
+                    .pipe(filter((commentDta) => commentDta.postId === comId))
+                    .subscribe((commentDta) => {
+                      console.log(commentDta);
+                      let commentTemplate = `     
+              <div class="col">
+              <h6 style="color: red;">Comment:</h6>
+                  <p>name:  ${commentDta.name}</p>
+                  <p>email:   ${postData.body} </p>
+                  <p>comment: ${postData.body} </p>
+              </div>     
+          `;
+          const postComment = document.createElement("post-comments");
+          postComment.innerHTML=commentTemplate;
+          userComment.append(postComment)
+                    });
+                }
               });
           }
         });
     }
   }
 }
-
 window.onload = pageOnload;
