@@ -6,6 +6,7 @@ function pageOnload() {
   const { filter } = rxjs.operators;
   search.onclick = displayUser;
   function displayUser() {
+    fetchUser();
     const userId = Number(document.getElementById("user-id").value);
     async function fetchUser() {
       let userList = document.getElementById("user-list");
@@ -42,7 +43,7 @@ function pageOnload() {
           };
         });
     }
-    fetchUser();
+    
   }
 }
 
