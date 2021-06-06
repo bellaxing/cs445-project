@@ -10,17 +10,18 @@
     <script src="./cs445.js"></script>
 </head>
 <body>
-    <div class="login-page">
-        <p class="user-name"> user name: <input type="text" name="" id="user-name" placeholder="user name"></p>
-        <p class="user-password"> user password: <input type="password" name="" id="user-password" placeholder="password"></p>
+    <div class="login-page" id="login-page-id">
+        <p class="user-name"> user name: <input type="text" name="" id="user-name-id" placeholder="user name"></p>
+        <p class="user-password"> user password: <input type="password" name="" id="user-password-id" placeholder="password"></p>
         <p class="login-button"><button id="login-btn"> login</button></p>
      
     </div>
-    <div class="user-class">
+    <div class="user-class" id="user-class-id">
         <div class="user-web">
             <div class="seach-div">
                 <input type="text" id="user-id" placeholder="enter user id">
-                <button id="search-user">Search</button>
+                <button id="search-user" style="background-color: green;">Search</button>
+                <button id="logout-button" style="background-color: red;"  >logout</button>
             </div>
             <div class="user">
                 <div  class="users-information">
