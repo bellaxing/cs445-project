@@ -1,10 +1,36 @@
-
 window.onload = pageOnload;
 
 function pageOnload() {
+  const logIn = document.getElementById("login-btn");
+  const logOut = document.getElementById("logout-button");
+  logOut.onclick = logOutPage;
+  logIn.onclick = logInPage;
+  function logInPage() {
+    let userAccount = {
+      userName: "redda",
+      password: "cs445project",
+    };
+    const user_name = document.getElementById("user-name-id").value;
+    const user_password = document.getElementById("user-password-id").value;
+    if (
+      userAccount.userName === user_name &&
+      userAccount.password === user_password
+    ) {
+      document.getElementById("user-class-id").className = "user-class-display";
+      document.getElementById("login-page-id").className = "hide-login-page";
+      userActivity();
+    }else{
+      alert("incorrect password")
+    }
+  }
+
+  ////////////////////////////////////////////////////////////////////////////
+  function logOutPage() {
+    document.getElementById("user-class-id").className = "user-class";
+    document.getElementById("login-page-id").className = "login-page";
+  }
   //http://jsonplaceholder.typicode.com/users
   const search = document.getElementById("search-user");
-  userActivity();
 
   ////////////////////////////////////////////////////////////////////////////
 
@@ -13,13 +39,13 @@ function pageOnload() {
     const { filter } = rxjs.operators;
     search.onclick = displayUser;
 
-  ////////////////////////////////////////////////////////////////////////////  
+    ////////////////////////////////////////////////////////////////////////////
     function displayUser() {
       const userId = Number(document.getElementById("user-id").value);
       let userList = document.getElementById("user-list");
       fetchUser();
 
-  /////////////////////////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////////////////
 
       async function fetchUser() {
         userList.innerHTML = "";
@@ -33,7 +59,7 @@ function pageOnload() {
           });
       }
 
- /////////////////////////////////////////////////////////////////////////////////     
+      /////////////////////////////////////////////////////////////////////////////////
 
       function displayUserData(data) {
         let lati = data.address.geo.lat;
@@ -43,13 +69,13 @@ function pageOnload() {
         // console.log(data.address.geo.lng);
         fetchCurrentLocation();
 
-  ///////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////
 
         async function fetchCurrentLocation() {
           let resultLocations = await fetch(
             "https://mapquestapi.com/geocoding/v1/reverse?key=q5N7YWFQnHlQCfx0KyD5d1qoATAAFezV&location=" +
-              lati+
-              ","+
+              lati +
+              "," +
               long
           );
           let jsonLocation = await resultLocations.json();
@@ -59,7 +85,7 @@ function pageOnload() {
             //console.log("127 Marthin Luther king blvd")
             navigator.geolocation.getCurrentPosition(latLong, failToLoad);
           }
-   ////////////////////////////////////////////////////////////////////////////       
+          ////////////////////////////////////////////////////////////////////////////
           function latLong(position) {
             lati = position.coords.latitude;
             long = position.coords.longitude;
@@ -95,7 +121,7 @@ function pageOnload() {
         let userPost = document.getElementById("user-post");
         userPost.innerHTML = "";
 
-///////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////
 
         async function fetchUserPost() {
           let userId = getPost.value;
@@ -111,7 +137,7 @@ function pageOnload() {
             });
         }
 
-/////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////
 
         function displayUserPost(postData) {
           console.log(postData);
@@ -148,8 +174,8 @@ function pageOnload() {
               .subscribe((commentDta) => {
                 displayComments(commentDta);
               });
-  
-  ///////////////////////////////////////////////////////////////////////////////////////////
+
+            ///////////////////////////////////////////////////////////////////////////////////////////
 
             function displayComments(commentDta) {
               console.log(commentDta);
@@ -162,11 +188,9 @@ function pageOnload() {
                               </div>     
                           `;
 
-
               const postComment = document.createElement("post-comments");
               postComment.innerHTML = commentTemplate;
               userComment.append(postComment);
-
             }
           }
         }
@@ -174,4 +198,3 @@ function pageOnload() {
     }
   }
 }
-
