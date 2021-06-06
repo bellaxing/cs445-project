@@ -12,7 +12,7 @@ function pageOnload() {
       async function fetchUser() {
         let userList = document.getElementById("user-list");
         userList.innerHTML = "";
-        let result = await fetch("http://jsonplaceholder.typicode.com/users");
+        let result = await fetch("https://jsonplaceholder.typicode.com/users");
         let userFetch = await result.json();
         const user = from(userFetch);
         user
@@ -42,7 +42,7 @@ function pageOnload() {
             async function fetchUserPost() {
               let userId = getPost.value;
               let postResult = await fetch(
-                "http://jsonplaceholder.typicode.com/posts"
+                "https://jsonplaceholder.typicode.com/posts"
               );
               let postJson = await postResult.json();
               //console.log(postJson);
@@ -70,7 +70,7 @@ function pageOnload() {
                   postCommentBut.addEventListener("click", fetchComments, false);
                   async function fetchComments() {
                     const commentResult = await fetch(
-                      "http://jsonplaceholder.typicode.com/comments"
+                      "https://jsonplaceholder.typicode.com/comments"
                     );
                     const commentJson = await commentResult.json();
                     let comId = Number(postCommentBut.value);
