@@ -10,25 +10,33 @@
     <script src="./cs445.js"></script>
 </head>
 <body>
-    <div class="user-web">
-        <div class="seach-div">
-            <input type="text" id="user-id" placeholder="enter user id">
-            <button id="search-user">Search</button>
-        </div>
-        <div class="user">
-            <div  class="users-information">
-                <div id="user-list">
+    <div class="login-page">
+        <p class="user-name"> user name: <input type="text" name="" id="user-name" placeholder="user name"></p>
+        <p class="user-password"> user password: <input type="password" name="" id="user-password" placeholder="password"></p>
+        <p class="login-button"><button id="login-btn"> login</button></p>
+     
+    </div>
+    <div class="user-class">
+        <div class="user-web">
+            <div class="seach-div">
+                <input type="text" id="user-id" placeholder="enter user id">
+                <button id="search-user">Search</button>
+            </div>
+            <div class="user">
+                <div  class="users-information">
+                    <div id="user-list">
 
+                    </div>
+                </div>
+                <div  class="user-posts">
+                    <div id="user-post">
+                       <div id="user-comments">  
+                       </div>
+                    </div> 
                 </div>
             </div>
-            <div  class="user-posts">
-                <div id="user-post">
-                   <div id="user-comments">
-                       
-                   </div>
-                </div> 
-            </div>
-        </div>
+    </div>
+   
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.6.7/rxjs.umd.js"></script>   
 </body>
