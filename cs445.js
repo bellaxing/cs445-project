@@ -8,7 +8,7 @@ function pageOnload() {
   function logInPage() {
     let userAccount = {
       userName: "redda",
-      password: "cs445project",
+      password: "cs445",
     };
     const user_name = document.getElementById("user-name-id").value;
     const user_password = document.getElementById("user-password-id").value;
