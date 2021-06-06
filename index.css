@@ -13,11 +13,12 @@ body, html{
     margin-top: 30px;
     /* text-align: center; */
     margin-left: 250px;
+    /* background: aqua; */
     flex: 1;
 }
 .user{
     display: flex;
-    flex: 4;
+    flex: 5;
     margin-top: 30px;
     margin-left: 40px;
     flex-direction: row;
@@ -28,5 +29,18 @@ body, html{
 }
 .user-posts{
     flex: 3;
-    /* background-color: bisque; */
+   
+}
+.login-page{
+    display: flex;
+    background-color: aqua;
+}
+.user-name{
+    margin-left: 10px;
+}
+.user-password{
+    margin-left: 20px; 
+}
+.login-button{
+    margin-left: 20px;
 }
