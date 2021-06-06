@@ -31,9 +31,18 @@ body, html{
     flex: 3;
    
 }
+.user-class{
+    display: none;
+}
+.user-class-display{
+    display: block;;
+}
 .login-page{
     display: flex;
     background-color: aqua;
+}
+.hide-login-page{
+    display: none;
 }
 .user-name{
     margin-left: 10px;
