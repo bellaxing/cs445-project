@@ -110,7 +110,7 @@ function pageOnload() {
                       <p>Zip:${data.address.zipcode} </p>
                       <p>Current location:${currentLocation} </p>
                       <button id="idBut" value="${id} " style="background-color: aqua;">Get posts</button>
-                  </div>     
+                  </div>     z
               `;
 
         const userDiv = document.createElement("user-list");
