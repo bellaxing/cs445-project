@@ -36,17 +36,41 @@ document.getElementById("search-button").onclick=  fetchUser;
                      let id=Number(getPost.value);
                      let post=await fetch('https://jsonplaceholder.typicode.com/posts')
                      let jsonPost=await post.json();
-                     console.log(jsonPost)
-                     let filterPost=jsonPost.filter(elem=>elem.userId===id)
-                     console.log(filterPost)
+                     let postCommentBut;
+                    // console.log(jsonPost)
+                     let filterData=jsonPost.filter(elem=>elem.userId===id)
+                     filterData.forEach(filterPost=>{
+
+                        console.log(filterPost)
+                        let postId =filterPost.id;
+                           let userPostTemplate = ` 
+                           <div class="col">
+   
+                           <p>title: ${filterPost.title}</p>
+                           <p>body:${filterPost.body} </p>
+                           <button id="commentBut" value="${postId}">Get comment</button>
+                           <div id="comment-list"></div>
+                           `;
+                           const divPost = document.createElement("diV-post");
+                           divPost.innerHTML = userPostTemplate;
+                           userPost.appendChild(divPost);
+                            postCommentBut = document.getElementById("commentBut");
+                           postCommentBut.id = "commentDisplay";
+                           let userComment = document.getElementById("comment-list");
+                           userComment.id = "list-of-comments";
+                     })
+                    
+                        postCommentBut.addEventListener("click", fetchComments, false);
+                       
+                       async function fetchComments(){
+                           alert("hello")
+                           alert(document.getElementById("commentDisplay").value)
+ 
+                        }
                    }
      
-
     }
 
 }
 
-
-/*
-
-*/
+//https://jsonplaceholder.typicode.com/comments
