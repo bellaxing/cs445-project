@@ -3,8 +3,12 @@ window.onload = pageOnload;
 function pageOnload() {
   const logIn = document.getElementById("login-btn");
   const logOut = document.getElementById("logout-button");
+
   logOut.onclick = logOutPage;
   logIn.onclick = logInPage;
+
+  ///////////////////////////////////////////////////////////////////////////////////////////
+
   function logInPage() {
     let userAccount = {
       userName: "redda",
@@ -19,12 +23,13 @@ function pageOnload() {
       document.getElementById("user-class-id").className = "user-class-display";
       document.getElementById("login-page-id").className = "hide-login-page";
       userActivity();
-    }else{
-      alert("incorrect password")
+    } else {
+      alert("incorrect password");
     }
   }
 
   ////////////////////////////////////////////////////////////////////////////
+
   function logOutPage() {
     document.getElementById("user-class-id").className = "user-class";
     document.getElementById("login-page-id").className = "login-page";
@@ -65,24 +70,21 @@ function pageOnload() {
         let lati = data.address.geo.lat;
         let long = data.address.geo.lng;
         let currentLocation;
-        // console.log(data.address.geo.lat);
-        // console.log(data.address.geo.lng);
         fetchCurrentLocation();
 
         ///////////////////////////////////////////////////////////////////////////////////
 
         async function fetchCurrentLocation() {
           let resultLocations = await fetch(
-            "https://mapquestapi.com/geocoding/v1/reverse?key=q5N7YWFQnHlQCfx0KyD5d1qoATAAFezV&location=" +
+            "http://mapquestapi.com/geocoding/v1/reverse?key=q5N7YWFQnHlQCfx0KyD5d1qoATAAFezV&location=" +
               lati +
               "," +
               long
           );
           let jsonLocation = await resultLocations.json();
-          //console.log(jsonLocation)
           currentLocation = jsonLocation.results[0].locations[0].street;
+          console.log(currentLocation);
           if (currentLocation === "") {
-            //console.log("127 Marthin Luther king blvd")
             navigator.geolocation.getCurrentPosition(latLong, failToLoad);
           }
           ////////////////////////////////////////////////////////////////////////////
@@ -108,7 +110,7 @@ function pageOnload() {
                       <p>Street:${data.address.street} </p>
                       <p>City:${data.address.city} </p>
                       <p>Zip:${data.address.zipcode} </p>
-                      <p>Current location:${currentLocation} </p>
+                      <p id="current-location">Current location:${currentLocation} </p>
                       <button id="idBut" value="${id} " style="background-color: aqua;">Get posts</button>
                   </div>     
               `;
@@ -129,7 +131,7 @@ function pageOnload() {
             "https://jsonplaceholder.typicode.com/posts"
           );
           let postJson = await postResult.json();
-          //console.log(postJson);
+
           from(postJson)
             .pipe(filter((elem) => elem.userId === Number(userId)))
             .subscribe((postData) => {
@@ -168,7 +170,7 @@ function pageOnload() {
             );
             const commentJson = await commentResult.json();
             let comId = Number(postCommentBut.value);
-            //    console.log(commentJson)
+
             from(commentJson)
               .pipe(filter((commentDta) => commentDta.postId === comId))
               .subscribe((commentDta) => {
