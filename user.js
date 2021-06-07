@@ -14,4 +14,18 @@
       <input type = "text" id=${index}address value=${user.address.city} />
       <br/>`;
     });
+    //Post and Comment Input and buttons
+  document.getElementById(
+    'post'
+  ).innerHTML = `<label>Enter user Id to retrieve the post</label><br/>
+                    <input type=text id='userPost' />
+                    <button id='postButton' >Show Post</button>
+                    <button id='comment'>Show Comment</button>`;
+
+  let userId;
+  const showPost = document.getElementById('postButton');
+
+
+
+
 })();
