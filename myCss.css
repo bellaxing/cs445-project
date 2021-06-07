@@ -1,3 +1,9 @@
 body{
     background-color: rgb(151, 25, 94);
 }
+#search{
+    background-color: cornflowerblue;
+}
+#comments{
+    background-color: darkcyan;
+}
