@@ -1,8 +1,5 @@
 function pageOnload() {
-    //http://jsonplaceholder.typicode.com/users
     const search = document.getElementById("search");
-    const { from } = rxjs;
-    const { filter } = rxjs.operators;
     search.onclick = displayUserinformation;
     function displayUserinformation() {
       User();
