@@ -12,6 +12,11 @@ async function fetchSingleUser(id) {
 //     }
 //     return users;
 // }
+async function fetchLocation(lat,lng){
+    const url = "http://www.mapquestapi.com/geocoding/v1/reverse?key=Q3wki3UwkqnZrHPKJDz69sSvAF4oijG5&location="+lat+','+lng;
+    //consumer key: Q3wki3UwkqnZrHPKJDz69sSvAF4oijG5
+    return fetch(url).then(response => response.json())     
+}
 
 
 async function displayUserInHtml() {
@@ -26,6 +31,15 @@ async function displayUserInHtml() {
     const userInformation = document.getElementById('userInfo');
     userInformation.innerHTML = '';
     const user = await fetchSingleUser(inputId -1);
+    const lat = user.address.geo.lat;
+    const lng = user.address.geo.lng;
+    console.log(lat)
+    console.log(lng)
+    const currentObject = await fetchLocation(lat, lng);
+    const currentLocation = currentObject.results;
+    console.log(currentLocation)
+    
+
     //userArr.forEach(user => {
         let template = `     
             <div class="col">
@@ -33,6 +47,15 @@ async function displayUserInHtml() {
                 <h6>Name : ${user.name} </h6>
                 <p>Phone : ${user.phone}</p>
                 <p>Email : ${user.email}</p>
+                <h5>Address:</h5>
+                <p> ${user.address.suite}, ${user.address.street}.</P>
+                <p>  ${user.address.city}, ${user.address.zipcode}.</P>
+                <h5>Current Location:</h5>
+                <p> ${currentLocation[0].locations[0].street},</P>
+                <p> ${currentLocation[0].locations[0].adminArea3}, ${currentLocation[0].locations[0].postalCode}.</P>
+                
+
+
             </div>     
         `;
         const div = document.createElement('div');
