@@ -9,7 +9,7 @@ document.getElementById("search-button").onclick=  fetchUser;
         let userJson=await users.json();
         let listUser=userJson.filter(elem=>elem.id===userId)
             listUser=listUser[0]
-        console.log(listUser)
+        //console.log(listUser)
         let userList=document.getElementById("user-info");
          userList.innerHTML="";
                      let userTemplate = ` 
@@ -29,17 +29,24 @@ document.getElementById("search-button").onclick=  fetchUser;
                     userList.append(userDiv);
                     let getPost = document.getElementById("idBut");
                     getPost.onclick = fetchUserPost;
-                    //let userPost = document.getElementById("user-post");
-                    //userPost.innerHTML = "";
+                    let userPost = document.getElementById("user-post");
+                    userPost.innerHTML = "";
        
-                   function fetchUserPost(){
-                       alert(getPost.value)
+                 async  function fetchUserPost(){
+                     let id=Number(getPost.value);
+                     let post=await fetch('https://jsonplaceholder.typicode.com/posts')
+                     let jsonPost=await post.json();
+                     console.log(jsonPost)
+                     let filterPost=jsonPost.filter(elem=>elem.userId===id)
+                     console.log(filterPost)
                    }
-        // console.log(userJson)
-        // console.log(userJson[0].id)
-        // console.log(userJson[0].name)
-        // console.log(userJson[0].email)
+     
 
     }
 
 }
+
+
+/*
+
+*/
