@@ -5,17 +5,48 @@ async function fetchSingleUser(id) {
     return json[id];
 }
 
-// async function fetchUsers(len) {
-//     const users = [];
-//     for (let i = 0; i < len; i++) {
-//         users[i] = await fetchSingleUser();
-//     }
-//     return users;
-// }
 async function fetchLocation(lat,lng){
     const url = "http://www.mapquestapi.com/geocoding/v1/reverse?key=Q3wki3UwkqnZrHPKJDz69sSvAF4oijG5&location="+lat+','+lng;
     //consumer key: Q3wki3UwkqnZrHPKJDz69sSvAF4oijG5
     return fetch(url).then(response => response.json())     
+}
+
+
+
+async function displayUserPost(id){
+    const userPost = document.getElementById("userpost");
+    userPost.innerHTML = '';
+    const fetchPost = await fetch('http://jsonplaceholder.typicode.com/posts?userId='+id);
+    const postArray = await fetchPost.json();
+
+    for(let i=0; i< postArray.length; i++){
+        let template = `     
+            <div class="col">
+                <h6>Title : ${postArray[i].title}</h6>
+                <h6>Body : ${postArray[i].body} </h6>
+                <button id='comment${i}'> See Comment</button>
+                </div>
+    `
+        const div = document.createElement('div');
+        div.classList = 'row border-top';
+        div.innerHTML = template;
+        userPost.appendChild(div);
+        
+    }
+//     postArray.forEach(user => {
+//     let template = `     
+//             <div class="col">
+//                 <h6>Title : ${user.title}</h6>
+//                 <h6>Body : ${user.body} </h6>
+//                 <button id='comment'> See comment</button>
+//                 </div>
+//     `
+//         const div = document.createElement('div');
+//         div.classList = 'row border-top';
+//         div.innerHTML = template;
+//         userPost.appendChild(div);
+
+// });
 }
 
 
@@ -39,8 +70,6 @@ async function displayUserInHtml() {
     const currentLocation = currentObject.results;
     console.log(currentLocation)
     
-
-    //userArr.forEach(user => {
         let template = `     
             <div class="col">
                 <h6>Username : ${user.username}</h6>
@@ -53,18 +82,24 @@ async function displayUserInHtml() {
                 <h5>Current Location:</h5>
                 <p> ${currentLocation[0].locations[0].street},</P>
                 <p> ${currentLocation[0].locations[0].adminArea3}, ${currentLocation[0].locations[0].postalCode}.</P>
-                
-
-
             </div>     
+            <div class="col">
+            <button id="postbtn" class="btn btn-success">Get Post</button>
+            <h5>User Posts<h5>
+            <div id="userpost"></div>
+            </div>
+
         `;
         const div = document.createElement('div');
         div.classList = 'row border-top';
         div.innerHTML = template;
         userInformation.appendChild(div);
 
-    
-    //});
+        document.getElementById('postbtn').onclick= async function(){
+            await displayUserPost(inputId);
+        }
+        
+
 }
 window.onload = async function() {
     //await displayUserInHtml();
