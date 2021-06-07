@@ -5,6 +5,8 @@ function pageOnload() {
   const logOut = document.getElementById("logout-button");
   logOut.onclick = logOutPage;
   logIn.onclick = logInPage;
+
+  ///////////////////////////////////////////////////////////////////////
   function logInPage() {
     let userAccount = {
       userName: "redda",
