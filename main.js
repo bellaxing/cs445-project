@@ -21,7 +21,7 @@ window.onload = function () {
       let userFetch = await result.json();
       const user = from(userFetch);
       user
-        .pipe(filter((element) => element.id === userId))
+        .pipe(filter((data) => data.id === userId))
         .subscribe((data) => {
           displayUserData(data);
         });
