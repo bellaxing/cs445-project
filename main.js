@@ -33,10 +33,37 @@ document.getElementById("search-button").onclick=  fetchUser;
                         <button id="idBut" value="${listUser.id}">Get posts</button>
                         </div> 
                     `; 
-   }
-}
+                    const userDiv = document.createElement("user-list");
+                    userDiv.innerHTML = userTemplate;
+                    userList.append(userDiv);
+                    let getPost = document.getElementById("idBut");
+                    getPost.onclick = fetchUserPost;
+                    let userPost = document.getElementById("user-post");
+                    userPost.innerHTML = "";
+       
+                 async  function fetchUserPost(){
+                     let id=Number(getPost.value);
+                     let post=await fetch('https://jsonplaceholder.typicode.com/posts')
+                     let jsonPost=await post.json();
+                     let filterData=jsonPost.filter(elem=>elem.userId===id)
+                     filterData.forEach(filterPost=>{
 
-//https://jsonplaceholder.typicode.com/comments
-
-
-
+                        console.log(filterPost)
+                        let postId =filterPost.id;
+                           let postTemplate = ` 
+                           <div class="col">
+   
+                           <p>title: ${filterPost.title}</p>
+                           <p>body:${filterPost.body} </p>
+                           <button id="commentBut" value="${postId}">Get comment</button>
+                           <div id="comment-list"></div>
+                           `;
+                           const divPost = document.createElement("diV-post");
+                           divPost.innerHTML = postTemplate;
+                           userPost.appendChild(divPost);
+                           let postCommentBut = document.getElementById("commentBut");
+                             postCommentBut.id = "commentDisplay";
+                           let userComment = document.getElementById("comment-list");
+                           userComment.id = "list-of-comments";
+                     })
+                    }}}        
