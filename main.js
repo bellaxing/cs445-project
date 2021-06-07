@@ -70,8 +70,8 @@ document.getElementById("search-button").onclick=  fetchUser;
                         postCommentBut.addEventListener("click", fetchComments, false);
                        
                        async function fetchComments(){
-                        //    alert("hello")
-                        //    alert(document.getElementById("commentDisplay").value)
+                           alert("hello")
+                           alert(document.getElementById("commentDisplay").value)
  
                         }
                    }
