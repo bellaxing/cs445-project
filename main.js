@@ -66,4 +66,16 @@ document.getElementById("search-button").onclick=  fetchUser;
                            let userComment = document.getElementById("comment-list");
                            userComment.id = "list-of-comments";
                      })
-                    }}}        
+                     postCommentBut=document.getElementById("commentDisplay")
+                        postCommentBut.addEventListener("click", fetchComments, false);
+                       
+                       async function fetchComments(){
+                        //    alert("hello")
+                        //    alert(document.getElementById("commentDisplay").value)
+ 
+                        }
+                   }
+     
+    }
+
+}
