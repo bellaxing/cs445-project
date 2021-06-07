@@ -36,14 +36,12 @@ document.getElementById("search-button").onclick=  fetchUser;
                      let id=Number(getPost.value);
                      let post=await fetch('https://jsonplaceholder.typicode.com/posts')
                      let jsonPost=await post.json();
-                     let postCommentBut;
-                    // console.log(jsonPost)
                      let filterData=jsonPost.filter(elem=>elem.userId===id)
                      filterData.forEach(filterPost=>{
 
                         console.log(filterPost)
                         let postId =filterPost.id;
-                           let userPostTemplate = ` 
+                           let postTemplate = ` 
                            <div class="col">
    
                            <p>title: ${filterPost.title}</p>
@@ -52,19 +50,19 @@ document.getElementById("search-button").onclick=  fetchUser;
                            <div id="comment-list"></div>
                            `;
                            const divPost = document.createElement("diV-post");
-                           divPost.innerHTML = userPostTemplate;
+                           divPost.innerHTML = postTemplate;
                            userPost.appendChild(divPost);
-                            postCommentBut = document.getElementById("commentBut");
-                           postCommentBut.id = "commentDisplay";
+                           let postCommentBut = document.getElementById("commentBut");
+                             postCommentBut.id = "commentDisplay";
                            let userComment = document.getElementById("comment-list");
                            userComment.id = "list-of-comments";
                      })
-                    
+                     postCommentBut=document.getElementById("commentDisplay")
                         postCommentBut.addEventListener("click", fetchComments, false);
                        
                        async function fetchComments(){
-                           alert("hello")
-                           alert(document.getElementById("commentDisplay").value)
+                        //    alert("hello")
+                        //    alert(document.getElementById("commentDisplay").value)
  
                         }
                    }
