@@ -1,11 +1,12 @@
-.main-post{
+.mainPost{
     display: flex;
     flex-direction: row;
+    
 }
-#div-title{
+/* #div-title{
     background-color: violet;
     text-align: center;
-}
+} */
 .left{
     flex: 1;
     display: flex;
