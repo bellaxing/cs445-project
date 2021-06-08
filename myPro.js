@@ -1,5 +1,5 @@
+
 function pageOnload() {
-  //http://jsonplaceholder.typicode.com/users
   const search = document.getElementById("search-user");
 
   const { from } = rxjs;
@@ -39,7 +39,7 @@ function pageOnload() {
           userList.append(div);
           let getPost = document.getElementById("idBut");
           getPost.onclick = function () {
-            alert(getPost.value+template);
+            alert("I need help to post comments and find Geo location");
           };
         });
     }
