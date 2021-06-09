@@ -33,14 +33,29 @@ function pageOnload() {
                 <button id="idBut" value="${id} " style="background-color: aqua;">Get posts</button>
             </div>     
         `;
+        
           const div = document.createElement("div");
           div.classList = "row border-top";
           div.innerHTML = template;
           userList.append(div);
           let getPost = document.getElementById("idBut");
-          getPost.onclick = function () {
-            alert("I need help to post comments and find Geo location");
-          };
+          getPost.onclick =fetchUserPost;
+
+          async function fetchUserPost() {
+            let userId = getPost.value;
+            let postResult = await fetch(
+              "https://jsonplaceholder.typicode.com/posts"
+            );
+            let postJson = await postResult.json();
+  
+            from(postJson)
+              .pipe(filter((elem) => elem.userId === Number(userId)))
+              .subscribe((postData) => {
+                displayUserPost(postData);
+              });
+          }
+
+          
         });
     }
     
