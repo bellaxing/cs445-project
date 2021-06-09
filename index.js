@@ -12,6 +12,32 @@ async function fetchLocation(lat,lng){
 }
 
 
+async function displayPostComment(id){
+    console.log(id);
+    const fetchComment = await fetch("http://jsonplaceholder.typicode.com/comments?postId="+id).then(response =>response.json());
+    console.log(fetchComment[0].email);
+    const commentDisplay = document.getElementById("postcomment"+id);
+    fetchComment.forEach(element =>{
+        let template =`
+        <div class="col">
+                <p> Name: ${element.name}</p>
+                <p> Comments :${element.body}</p>
+
+                `
+        const div = document.createElement('div');
+        div.classList = 'row border-top';
+        div.innerHTML = template;
+        commentDisplay.appendChild(div);
+        
+        // console.log(element)
+        // document.getElementById("postcomment").innerHTML=element.email;
+
+    })
+    
+    
+}
+
+
 
 async function displayUserPost(id){
     const userPost = document.getElementById("userpost");
@@ -24,13 +50,23 @@ async function displayUserPost(id){
             <div class="col">
                 <h6>Title : ${postArray[i].title}</h6>
                 <h6>Body : ${postArray[i].body} </h6>
-                <button id='comment${i}'> See Comment</button>
+                <button id='comment${i+1}' class="btn btn-success"> View Comment</button>
                 </div>
+                </div>     
+            <div class="col">
+            <div id="postcomment${i+1}"></div>
+            </div>
     `
         const div = document.createElement('div');
         div.classList = 'row border-top';
         div.innerHTML = template;
         userPost.appendChild(div);
+        //console.log(document.getElementsByTagName("p").innerHTML)
+        document.getElementById(`comment${i+1}`).onclick= async function(){
+            await displayPostComment(i+1);
+        }
+       
+        
         
     }
 //     postArray.forEach(user => {
@@ -62,6 +98,7 @@ async function displayUserInHtml() {
     const userInformation = document.getElementById('userInfo');
     userInformation.innerHTML = '';
     const user = await fetchSingleUser(inputId -1);
+    console.log(user)
     const lat = user.address.geo.lat;
     const lng = user.address.geo.lng;
     console.log(lat)
@@ -84,7 +121,7 @@ async function displayUserInHtml() {
                 <p> ${currentLocation[0].locations[0].adminArea3}, ${currentLocation[0].locations[0].postalCode}.</P>
             </div>     
             <div class="col">
-            <button id="postbtn" class="btn btn-success">Get Post</button>
+            <button id="postbtn" class="btn btn-success">View Post</button>
             <h5>User Posts<h5>
             <div id="userpost"></div>
             </div>
