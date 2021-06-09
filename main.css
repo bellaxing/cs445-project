@@ -1,3 +1,39 @@
-body {
+/* body{ 
+
+width: 450px;
+padding: 1px;
+margin: 10px;
+background-color: rgb(41, 48, 30);
+
+} */
+
+.content {
+    max-width: 500px;
+    margin: auto;
     background-color: khaki;
+  }
+
+
+h1, h2,div, footer{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+    text-align: left;
+      }
+
+@page {
+        size: 7in 9.25in;
+        margin: 27mm 16mm 27mm 16mm;
+     }
+#button {
+  background-color: green;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 24px;
+  color: white;
+}
+#userId {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 24px;
+  color:red;
+  text-align: center;
+
 }
