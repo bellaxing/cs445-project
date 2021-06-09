@@ -24,6 +24,27 @@
 
   let userId;
   const showPost = document.getElementById('postButton');
+  
+  //Event Listener when clicking Submit to show post
+  showPost.addEventListener('click', async () => {
+    userId = document.getElementById('userPost').value;
+    const postBody = document.getElementById('postBody');
+    console.log('USER ID--->', userId);
+
+    const post = await fetch(
+      `http://jsonplaceholder.typicode.com/posts/${userId}`
+    );
+    const postData = await post.json();
+    console.log('Post Data--->', postData);
+    postBody.innerHTML = `<div>
+                            <h1>Posts</h1>
+                            <h3>Title:</h3>
+                            <p>${postData.title}</p>
+                            <h3>Body:</h3>
+                            <p>${postData.body}</p>
+                          </div>`;
+  });
+
 
 
 
