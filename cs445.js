@@ -75,7 +75,7 @@ function pageOnload() {
 
         async function fetchCurrentLocation() {
           let resultLocations = await fetch(
-            "https://mapquestapi.com/geocoding/v1/reverse?key=q5N7YWFQnHlQCfx0KyD5d1qoATAAFezV&location=" +
+            "http://mapquestapi.com/geocoding/v1/reverse?key=q5N7YWFQnHlQCfx0KyD5d1qoATAAFezV&location=" +
               lati +
               "," +
               long
@@ -84,8 +84,14 @@ function pageOnload() {
           //console.log(jsonLocation)
           currentLocation = jsonLocation.results[0].locations[0].street;
           if (currentLocation === "") {
+            geoLocation();
             //console.log("127 Marthin Luther king blvd")
-            navigator.geolocation.getCurrentPosition(latLong, failToLoad);
+           
+          }
+          async function geoLocation(){
+            console.log(currentLocation+"before")
+            currentLocation=await navigator.geolocation.getCurrentPosition(latLong, failToLoad);
+            console.log(currentLocation+"after")
           }
           ////////////////////////////////////////////////////////////////////////////
           function latLong(position) {
@@ -97,7 +103,7 @@ function pageOnload() {
           function failToLoad() {
             alert("current locations failed to load");
           }
-          console.log(currentLocation);
+          //console.log(currentLocation);
         }
 
         let id = data.id;
@@ -140,7 +146,6 @@ function pageOnload() {
         }
 
         /////////////////////////////////////////////////////////////////////////////
-
         function displayUserPost(postData) {
           console.log(postData);
           let postId = postData.id;
@@ -185,8 +190,8 @@ function pageOnload() {
                               <div class="col">
                               <h6 style="color: red;">Comment:</h6>
                                   <p>name:  ${commentDta.name}</p>
-                                  <p>email:   ${postData.body} </p>
-                                  <p>comment: ${postData.body} </p>
+                                  <p>email:   ${commentDta.email} </p>
+                                  <p>body: ${commentDta.body} </p>
                               </div>     
                           `;
 
