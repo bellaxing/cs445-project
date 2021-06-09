@@ -31,7 +31,7 @@ document.getElementById("search-button").onclick=  fetchUser;
                     getPost.onclick = fetchUserPost;
                     let userPost = document.getElementById("user-post");
                     userPost.innerHTML = "";
-       
+                   // let postCommentBut;
                  async  function fetchUserPost(){
                      let id=Number(getPost.value);
                      let post=await fetch('https://jsonplaceholder.typicode.com/posts')
@@ -39,7 +39,7 @@ document.getElementById("search-button").onclick=  fetchUser;
                      let filterData=jsonPost.filter(elem=>elem.userId===id)
                      filterData.forEach(filterPost=>{
 
-                        console.log(filterPost)
+                        //console.log(filterPost)
                         let postId =filterPost.id;
                            let postTemplate = ` 
                            <div class="col">
@@ -52,17 +52,36 @@ document.getElementById("search-button").onclick=  fetchUser;
                            const divPost = document.createElement("diV-post");
                            divPost.innerHTML = postTemplate;
                            userPost.appendChild(divPost);
-                           let postCommentBut = document.getElementById("commentBut");
+                          let  postCommentBut = document.getElementById("commentBut");
                              postCommentBut.id = "commentDisplay";
                            let userComment = document.getElementById("comment-list");
                            userComment.id = "list-of-comments";
                      })
-                     postCommentBut=document.getElementById("commentDisplay")
+                    let postCommentBut=document.getElementById("commentDisplay")//
                         postCommentBut.addEventListener("click", fetchComments, false);
                        
-                       async function fetchComments(){
-                        //    alert("hello")
-                        //    alert(document.getElementById("commentDisplay").value)
+                     async function fetchComments(){
+                        let result=await fetch('https://jsonplaceholder.typicode.com/comments')
+                        let comResult=await result.json()
+                        console.log(comResult)
+                        let id=Number(postCommentBut.value) 
+                        //console.log(id)
+                         let filteredComment=   comResult.filter(data=>data.postId===id)
+                         let listOfComments=document.getElementById("list-of-comments");
+                         listOfComments.innerHTML="";
+                         console.log(filteredComment)
+                         filteredComment.forEach(d=>{
+
+                            let commentTemplate = ` 
+                            <div class="col">
+                            <p>name: ${d.name}</p>
+                            <p>email:${d.email} </p>
+                            <p>body:${d.body} </p>
+                            `;
+                            const divComment = document.createElement("diV-comment");
+                            divComment.innerHTML = commentTemplate;
+                            listOfComments.appendChild(divComment);
+                         })
  
                         }
                    }
