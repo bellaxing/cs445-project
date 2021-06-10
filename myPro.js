@@ -40,27 +40,87 @@ function pageOnload() {
           div.innerHTML = template;
           userList.append(div);
           let getPost = document.getElementById("idBut");
-          getPost.onclick =fetchUserPost;
+          getPost.onclick =UserPost;
+          let userPost = document.getElementById("user-post");
+          userPost.innerHTML = "";
 
-          async function fetchUserPost() {
+          async function UserPost() {
             let userId = getPost.value;
-            let postResult = await fetch(
+            let Result = await fetch(
               "https://jsonplaceholder.typicode.com/posts"
             );
-            let postJson = await postResult.json();
-            postJson.innerHTML;
+            let postJson = await Result.json();
+  
             from(postJson)
               .pipe(filter((elem) => elem.userId === Number(userId)))
               .subscribe((postData) => {
                 displayUserPost(postData);
               });
-          }
+          } 
+          function displayUserPost(postData) {
+            console.log(postData);
+            let postId = postData.id;
+            let PostTemplate = `     
+                    <div class="col">
+                    <h3 style="color:blue; font-weight: bold;"> User post:</h3>
+                        <p>Title: ${postData.title}</p>
+                        <p>Body:${postData.body} </p>
+                        <button id="commentBut" value="${postId} " style="background-color: aqua;"> View comments</button>
+                        <div id="list-comments"> </div>
+                    </div>     
+                `;
+            const divPost = document.createElement("user-post");
+            divPost.innerHTML = PostTemplate;
+            userPost.append(divPost);
+            let postCommentBut = document.getElementById("commentBut");
+            postCommentBut.id = "commentDisplay";
+            let userComment = document.getElementById("list-comments");
+            userComment.id = "list-of-comments";
+            postCommentBut.addEventListener("click", fetchComments, false);
 
-          
-        });
+        
+          async function fetchComments() {
+            const commentResult = await fetch(
+              "https://jsonplaceholder.typicode.com/comments"
+            );
+            const commentJson = await commentResult.json();
+            let comId = Number(postCommentBut.value);
+
+            from(commentJson)
+              .pipe(filter((commentDta) => commentDta.postId === comId))
+              .subscribe((commentDta) => {
+                displayComments(commentDta);
+              });
+        
+          function displayComments(commentDta) {
+            console.log(commentDta);
+            let commentTemplate = `     
+                            <div class="col">
+                            <h6 style="color: red;">Comment:</h6>
+                                <p>name:  ${commentDta.name}</p>
+                                <p>email:   ${postData.body} </p>
+                                <p>comment: ${postData.body} </p>
+                            </div>     
+                        `;
+
+            const postComment = document.createElement("post-comments");
+            postComment.innerHTML = commentTemplate;
+            userComment.append(postComment);
+
+
+          async function fetchUsers(len) {
+              const users = [];
+              for (let i = 0; i < len; i++) {
+                  users[i] = await fetchSingleUser();
+              }
+              return users;
+          }
+          }
+        }
     }
     
-  }
+  })
 }
-
+}
+}
 window.onload = pageOnload;
