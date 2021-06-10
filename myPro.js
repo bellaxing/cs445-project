@@ -52,13 +52,12 @@ function pageOnload() {
             let postJson = await Result.json();
   
             from(postJson)
-              .pipe(filter((elem) => elem.userId === Number(userId)))
+              .pipe(filter((elem) => elem.userId === parseInt(userId)))
               .subscribe((postData) => {
                 displayUserPost(postData);
               });
           } 
           function displayUserPost(postData) {
-            console.log(postData);
             let postId = postData.id;
             let PostTemplate = `     
                     <div class="col">
@@ -76,10 +75,10 @@ function pageOnload() {
             postCommentBut.id = "commentDisplay";
             let userComment = document.getElementById("list-comments");
             userComment.id = "list-of-comments";
-            postCommentBut.addEventListener("click", fetchComments, false);
+            postCommentBut.addEventListener("click",Comments, false);
 
         
-          async function fetchComments() {
+          async function Comments() {
             const commentResult = await fetch(
               "https://jsonplaceholder.typicode.com/comments"
             );
