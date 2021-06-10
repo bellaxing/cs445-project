@@ -9,12 +9,14 @@ body {
     font-size: 100%;
     background-attachment: fixed;
     font-family: verdana, hevetica, arial, sans-serif;
+    background-color: darkgray;
 }
 
 div#wrapper {
     width: 940px;
     margin: 0 auto;
     /* background:white;*/
+    background-color: burlywood;
 }
 
 main {
