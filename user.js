@@ -1,4 +1,3 @@
-
 (async () => {
     // Get User Details
     const response = await fetch('http://jsonplaceholder.typicode.com/users');
@@ -24,7 +23,7 @@
 
   let userId;
   const showPost = document.getElementById('postButton');
-  
+
   //Event Listener when clicking Submit to show post
   showPost.addEventListener('click', async () => {
     userId = document.getElementById('userPost').value;
@@ -44,9 +43,22 @@
                             <p>${postData.body}</p>
                           </div>`;
   });
-
-
-
-
-
+//Event Listener to show comments
+const showComment = document.getElementById('comment');
+showComment.addEventListener('click', async () => {
+  const comment = await fetch(
+    `http://jsonplaceholder.typicode.com/comments?postId=${userId}`
+  );
+  const commentData = await comment.json();
+  const commentBody = document.getElementById('commentBody');
+  commentBody.innerHTML = `<h1>Comments</h1>`;
+  commentData.forEach((comment) => {
+    commentBody.innerHTML += `<span>${comment.id}</span>:<p>${comment.body}</p>`;
+  });
+});
 })();
+
+
+
+
+
