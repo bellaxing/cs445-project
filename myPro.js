@@ -4,8 +4,8 @@ function pageOnload() {
 
   const { from } = rxjs;
   const { filter } = rxjs.operators;
-  search.onclick = displayUser;
-  function displayUser() {
+  search.onclick = display;
+  function display() {
     fetchUser();
     const userId = Number(document.getElementById("user-id").value);
     async function fetchUser() {
