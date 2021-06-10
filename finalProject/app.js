@@ -4,9 +4,9 @@ window.onload = function() {
     document.getElementById("btn").onclick = async function() {
         let userId = document.getElementById("inputId").value;
         let result = await fetch("https://jsonplaceholder.typicode.com/users")
-            // .then(response => response.json())
         let userObj = await result.json();
         let userArr = from(userObj)
+
 
         userArr.pipe(
             filter(user => user.id === userId)
