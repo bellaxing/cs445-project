@@ -56,3 +56,22 @@ window.onload = function () {
       const div = document.createElement("user-list");
       div.innerHTML = template;
       userList.append(div);
+
+
+      let getPost = document.getElementById("idBut");
+      getPost.onclick = fetchUserPost;
+      let userPost = document.getElementById("user-post");
+      userPost.innerHTML = "";
+
+
+      async function fetchUserPost() {
+        let userId = getPost.value;
+        let postResult = await fetch("https://jsonplaceholder.typicode.com/posts");
+        let postJson = await postResult.json();
+
+        from(postJson)
+          .pipe(filter((elem) => elem.userId === +userId))
+          .subscribe((postData) => {
+            showUserPost(postData);
+          });
+      }
