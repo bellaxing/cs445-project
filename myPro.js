@@ -13,7 +13,6 @@ function pageOnload() {
       userList.innerHTML = "";
       let result = await fetch("http://jsonplaceholder.typicode.com/users");
       let userFetch = await result.json();
-      console.log(userFetch);
       const user = from(userFetch);
       user
         .pipe(filter((element) => element.id === userId))
@@ -25,13 +24,13 @@ function pageOnload() {
                 <p>id: ${id}</p>
                 <p>name: ${data.name}</p>
                 <p>Email:${data.email} </p>
-                <p style="color: red;font-size: larger;">Address</p>
+                <p style="color: magenta;font-size: larger;">Address</p>
                 <p>Street:${data.address.street} </p>
                 <p>City:${data.address.city} </p>
                 <p>City:${data.address.city} </p>
                 <p>Zip:${data.address.zipcode} </p>
                 <p>Location </br>lat:${data.address.geo.lat}</br>lng:${data.address.geo.lng}</p>
-                <button id="idBut" value="${id} " style="background-color: aqua;">Get posts</button>
+                <button id="idBut" value="${id} " style="background-color: green;">All posts</button>
             </div>     
         `;
         
@@ -61,10 +60,10 @@ function pageOnload() {
             let postId = postData.id;
             let PostTemplate = `     
                     <div class="col">
-                    <h3 style="color:blue; font-weight: bold;"> User post:</h3>
+                    <h3 style="color:magenta; font-weight: bold;">List of User post:</h3>
                         <p>Title: ${postData.title}</p>
                         <p>Body:${postData.body} </p>
-                        <button id="commentBut" value="${postId} " style="background-color: aqua;"> View comments</button>
+                        <button id="commentBut" value="${postId} " style="background-color: blue;">List of comments</button>
                         <div id="list-comments"> </div>
                     </div>     
                 `;
