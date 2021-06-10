@@ -29,9 +29,7 @@ async function displayPostComment(id){
         div.innerHTML = template;
         commentDisplay.appendChild(div);
         
-        // console.log(element)
-        // document.getElementById("postcomment").innerHTML=element.email;
-
+        
     })
     
     
@@ -61,7 +59,6 @@ async function displayUserPost(id){
         div.classList = 'row border-top';
         div.innerHTML = template;
         userPost.appendChild(div);
-        //console.log(document.getElementsByTagName("p").innerHTML)
         document.getElementById(`comment${i+1}`).onclick= async function(){
             await displayPostComment(i+1);
         }
@@ -120,7 +117,7 @@ async function displayUserInHtml() {
                 <p> ${currentLocation[0].locations[0].street},</P>
                 <p> ${currentLocation[0].locations[0].adminArea3}, ${currentLocation[0].locations[0].postalCode}.</P>
             </div>     
-            <div class="col">
+            <div class="col-md-9">
             <button id="postbtn" class="btn btn-success">View Post</button>
             <h5>User Posts<h5>
             <div id="userpost"></div>
