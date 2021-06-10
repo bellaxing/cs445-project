@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.6.7/rxjs.umd.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
 
@@ -16,17 +17,18 @@
 <body>
     <div id="wrapper">
 
-        <div class="inputDiv">
-            <h1>User's information</h1><br>
-            <input id="inputId" type="text" placeholder="Enter user Id here..." />
-            <button id="btn" style="background-color: rgb(218, 181, 21)">Input UserId</button>
-        </div>
-        <div class="users">
-            <div class="userInformation">
-                <div id="userList">
-                </div>
+        <!-- <div class="inputDiv"> -->
+        <h1>User's information</h1><br>
+        <input id="inputId" type="text" placeholder="Enter user Id here..." />
+        <button class="btn btn-primary" id="btn" style="background-color: rgb(218, 181, 21)">Get UserInfo</button>
+        <div id="userList"></div>
+        <!-- </div> -->
+        <!-- <div class="users">
+        <div class="userInformation">
+            <div id="userList">
             </div>
         </div>
+    </div> -->
     </div>
 </body>
 
