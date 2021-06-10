@@ -15,8 +15,6 @@ window.onload = function() {
         ).subscribe(value => console.log(value))
 
     }
-
-
 }
 
 //    const url = 'http://www.mapquestapi.com/geocoding/v1/reverse?key=dO3a4FAviRC1A3StSlMVtX2L3XfRQvcd&location=81.1496,-37.3159&includeRoadMetadata=true&includeNearestIntersection=true';
