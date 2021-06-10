@@ -7,7 +7,7 @@ function pageOnload() {
   search.onclick = display;
   function display() {
     fetchUser();
-    const userId = Number(document.getElementById("user-id").value);
+    const userId = parseInt(document.getElementById("user-id").value);
     async function fetchUser() {
       let userList = document.getElementById("users");
       userList.innerHTML = "";
@@ -82,16 +82,16 @@ function pageOnload() {
             const commentResult = await fetch(
               "https://jsonplaceholder.typicode.com/comments"
             );
-            const commentJson = await commentResult.json();
-            let comId = Number(postCommentBut.value);
+            const data = await commentResult.json();
+            let comId = parseInt(postCommentBut.value);
 
-            from(commentJson)
+            from(data)
               .pipe(filter((commentDta) => commentDta.postId === comId))
               .subscribe((commentDta) => {
-                displayComments(commentDta);
+                displayAllComments(commentDta);
               });
         
-          function displayComments(commentDta) {
+          function displayAllComments(commentDta) {
             console.log(commentDta);
             let commentTemplate = `     
                             <div class="col">
@@ -105,15 +105,6 @@ function pageOnload() {
             const postComment = document.createElement("post-comments");
             postComment.innerHTML = commentTemplate;
             userComment.append(postComment);
-
-
-          async function fetchUsers(len) {
-              const users = [];
-              for (let i = 0; i < len; i++) {
-                  users[i] = await fetchSingleUser();
-              }
-              return users;
-          }
           }
         }
     }
