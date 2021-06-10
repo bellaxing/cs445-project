@@ -30,6 +30,7 @@ function pageOnload() {
                 <p>City:${data.address.city} </p>
                 <p>City:${data.address.city} </p>
                 <p>Zip:${data.address.zipcode} </p>
+                <p>Location </br>lat:${data.address.geo.lat}</br>lng:${data.address.geo.lng}</p>
                 <button id="idBut" value="${id} " style="background-color: aqua;">Get posts</button>
             </div>     
         `;
@@ -47,7 +48,7 @@ function pageOnload() {
               "https://jsonplaceholder.typicode.com/posts"
             );
             let postJson = await postResult.json();
-  
+            postJson.innerHTML;
             from(postJson)
               .pipe(filter((elem) => elem.userId === Number(userId)))
               .subscribe((postData) => {
