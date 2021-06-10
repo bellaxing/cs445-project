@@ -24,6 +24,7 @@
     font-weight: 400;
     font-style:italic;
 }
-.getPost{
-    align-self: center;
+#getPost{
+    text-align-last: right;
+    background-color: brown;
 }
