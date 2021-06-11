@@ -1,0 +1,62 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /*background: #af3;*/
+    font-size: 100%;
+    background-attachment: fixed;
+    font-family: verdana, hevetica, arial, sans-serif;
+    background-color: rgb(224, 203, 203);
+}
+
+div#wrapper {
+    width: 940px;
+    margin: 0 auto;
+    /* background:white;*/
+    background-color: rgb(204, 253, 198);
+}
+
+main {
+    float: left;
+    width: 580px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.container {
+    clear: both;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+p {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 1.5em;
+    line-height: 1.4;
+}
+
+
+/****Typography****/
+
+h1 {
+    font-size: 2.488em;
+    font-weight: 200;
+    color: #05a;
+}
+
+h3 {
+    font-size: 1.728em;
+    color: #1261a0;
+    text-transform: uppercase;
+    font-weight: 200;
+}
+
+p {
+    /*The dfault font size for the paragraph is 1em*/
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
