@@ -40,7 +40,7 @@ window.onload = function () {
         
         let template = `     
                     <div class="col">
-                        <h4>Employee Info:</h4>
+                        <h4>User Info:</h4>
                         <p>Full Name: ${data.name}</p>
                         <p>Email: ${data.email} </p>
                         
@@ -48,7 +48,7 @@ window.onload = function () {
                         <p>City: ${data.address.city} </p>
                         <p>Zipcode: ${data.address.zipcode} </p>
                         <p>Latitude: ${data.address.geo.lat} Longitude: ${data.address.geo.lng}</p>
-                        <button id="idBut" value="${data.id} " style="background-color:white">Get User Post</button>
+                        <button id="idBtn" value="${data.id} " style="background-color:white">Get User Post</button>
                     </div>     
                 `;
   
@@ -57,7 +57,7 @@ window.onload = function () {
         userList.append(div);
   
   
-        let getPost = document.getElementById("idBut");
+        let getPost = document.getElementById("idBtn");
         getPost.onclick = fetchUserPost;
         let userPost = document.getElementById("user-post");
         userPost.innerHTML = "";
@@ -71,13 +71,13 @@ window.onload = function () {
           from(postJson)
             .pipe(filter((user) => user.userId == userId))
             .subscribe((user) => {
-              showUserPost(user);
+              displayUserPost(user);
             });
         }
-        function showUserPost(postData) {
+        function displayUserPost(postData) {
           console.log(postData);
         
-          let userPostTemplate = `     
+          let template = `     
                     <div class="col">
                     <h5> User post</h5>
                         <p>Employee Id: ${postData.id}</p>
@@ -88,17 +88,17 @@ window.onload = function () {
                     </div>     
                 `;
           const divPost = document.createElement("user-post");
-          divPost.innerHTML = userPostTemplate;
+          divPost.innerHTML = template;
           userPost.append(divPost);
           let postCommentBut = document.getElementById("commentBut");
           postCommentBut.id = "commentDisplay";
           let userComment = document.getElementById("list-comments");
           userComment.id = "list-of-comments";
-          postCommentBut.addEventListener("click", fetchComments, false);
+          postCommentBut.addEventListener("click", fetchUserComments, false);
   
   
   
-          async function fetchComments() {
+          async function fetchUserComments() {
             const commentResult = await fetch(
               "https://jsonplaceholder.typicode.com/comments"
             );
@@ -108,11 +108,11 @@ window.onload = function () {
             from(commentJson)
               .pipe(filter((commentDta) => commentDta.postId == comId))
               .subscribe((commentDta) => {
-                showComments(commentDta);
+                displayComments(commentDta);
               });
   
   
-            function showComments(commentDta) {
+            function displayComments(commentDta) {
               console.log(commentDta);
               let commentTemplate = `     
                                 <div class="col">
