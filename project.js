@@ -5,15 +5,15 @@ async function fetchSingleUser() {
 }
 
 async function displayUserInHtml() {
-    const employeeDiv = document.getElementById('employee-list');
+    const employeeDiv = document.getElementById("employee-list");
     const id= document.getElementById("inputId").value;
     const users = await fetchSingleUser();
-     users.filter(user=>user.id===id)
+     users.filter(user=>user.id==id)
          .forEach(user => {
               let template = `     
             
             <div class="col">
-                <h>${user.name.first} </h3>
+                <h>${user.name} </h3>
                 <p>phone: ${user.phone}</p>
                 <p>${user.email}</p>
                 <p>${user.address.street} ${user.address.suite}</p>
@@ -21,10 +21,11 @@ async function displayUserInHtml() {
                 <p>${user.address.geo.lat} ${user.address.geo.lng}</p>
             </div>     
         `
-        const div = document.createElement('div');
+        const div = document.createElement("div");
         // div.classList = 'row border-top';
         div.innerHTML = template;
         employeeDiv.append(div);
+        // document.body.appendChild(div);
          }); 
       
     }
@@ -32,7 +33,7 @@ async function displayUserInHtml() {
 window.onload = async function() {
     await displayUserInHtml();
 
-    document.getElementById('getBtn').onclick = async function() {
+    document.getElementById("getBtn").onclick = async function() {
         await displayUserInHtml();
     }
 
