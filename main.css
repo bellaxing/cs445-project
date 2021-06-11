@@ -1,0 +1,28 @@
+.content-user {
+    max-width: 500px;
+    margin: auto;
+    background-color: rgb(140, 240, 160);
+  }
+
+  h2, div, input , button {
+      color:black;
+  }
+
+  #search-user {
+    
+    color:white;
+    background-color: black;
+    font-size: 20px;
+
+  }
+
+  #user-id {
+
+    font-size: 20px;
+    text-align: center;
+    color:indigo;
+  }
+
+  h1 {
+      color:indianred;
+  }
