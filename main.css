@@ -1,14 +1,15 @@
-#search-button{
-  color:#ef6b68;
-}
-body{
-  margin-top: 20px 30px;
-  background-color: #ef6b68;
-  border-top: 10px;
-}
-#user-info{
-  background-color: #5c8396";
-}
-#user-post{
-  background-color: #98ac3e;
-}
+.content {
+    max-width: 500px;
+    margin: auto;
+    background-color: rgb(255, 187, 0);
+  }
+
+  h2, div, input , button {
+      color:rgb(19, 17, 17);
+  }
+  #user-posts{
+      background-color: beige;
+  }
+  div #user-comments{
+      background-color: aqua;
+  }
