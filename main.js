@@ -106,18 +106,18 @@ window.onload = function () {
           let comId = Number(postCommentBut.value);
 
           from(commentJson)
-            .pipe(filter((commentDta) => commentDta.postId === comId))
-            .subscribe((commentDta) => {
-              showComments(commentDta);
+            .pipe(filter((commentData) => commentData.postId === comId))
+            .subscribe((commentData) => {
+              showComments(commentData);
             });
 
 
-          function showComments(commentDta) {
-            console.log(commentDta);
+          function showComments(commentData) {
+            console.log(commentData);
             let commentTemplate = `     
                               <div class="col">
                               <h6 style="color: red;">Comment:</h6>
-                                  <p>name:  ${commentDta.name}</p>
+                                  <p>name:  ${commentData.name}</p>
                                   <p>email:   ${postData.body} </p>
                                   <p>comment: ${postData.body} </p>
                               </div>     
