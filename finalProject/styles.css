@@ -9,7 +9,7 @@ body {
     font-size: 100%;
     background-attachment: fixed;
     font-family: verdana, hevetica, arial, sans-serif;
-    background-color: darkgray;
+    background-color: rgb(224, 203, 203);
 }
 
 div#wrapper {
