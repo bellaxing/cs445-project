@@ -1,26 +1,32 @@
 async function fetchSingleUser() {
     let responseBody = await fetch('http://jsonplaceholder.typicode.com/users');
     let json = await responseBody.json();
-    return json[0];
+    return json;
 }
 
-// async function fetchUsers(len) {
-//     const users = [];
-//     for (let i = 0; i < len; i++) {
-//         users[i] = await fetchSingleUser();
-//     }
-//     return users;
-// }
-
 async function displayUserInHtml() {
-    
-    const user = await fetchSingleUser();
-        document.getElementById('name').innerHTML = 'Full Name: '+user.name;
-        document.getElementById('phone').innerHTML = 'phone:' + user.phone;
-        document.getElementById('email').innerHTML = "Email: "+user.email;
-        document.getElementById('address').innerHTML='Street: '+user.address.street+" "+user.address.suite;
-        document.getElementById('address1').innerHTML='City: '+user.address.city+' ZipCode: '+user.address.zipcode;
-        document.getElementById('geoLocation').innerHTML='Location: Latitude: '+user.address.geo.lat+' Longitude: '+user.address.geo.lng;
+    const employeeDiv = document.getElementById('employee-list');
+    const id= document.getElementById("inputId").value;
+    const users = await fetchSingleUser();
+     users.filter(user=>user.id===id)
+         .forEach(user => {
+              let template = `     
+            
+            <div class="col">
+                <h>${user.name.first} </h3>
+                <p>phone: ${user.phone}</p>
+                <p>${user.email}</p>
+                <p>${user.address.street} ${user.address.suite}</p>
+                <p>${user.address.city} ${user.address.zipcode}</p>
+                <p>${user.address.geo.lat} ${user.address.geo.lng}</p>
+            </div>     
+        `
+        const div = document.createElement('div');
+        // div.classList = 'row border-top';
+        div.innerHTML = template;
+        employeeDiv.append(div);
+         }); 
+      
     }
 
 window.onload = async function() {
