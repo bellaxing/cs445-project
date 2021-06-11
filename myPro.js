@@ -6,10 +6,10 @@ function pageOnload() {
   const { filter } = rxjs.operators;
   search.onclick = display;
   function display() {
-    datafetchUser();
+    userDatafetch();
     const userId = parseInt(document.getElementById("user-id").value);
     
-    async function datafetchUser() {
+    async function userDatafetch() {
       let userList = document.getElementById("users");
       userList.innerHTML = "";
       let result = await fetch("http://jsonplaceholder.typicode.com/users");
@@ -18,7 +18,7 @@ function pageOnload() {
       user
         .pipe(filter((element) => element.id === userId))
         .subscribe((data) => {
-          
+          displayUserData(data);
           let template = `     
             <div class="col">
                 <h3> user information:</h3>
@@ -30,10 +30,9 @@ function pageOnload() {
                 <p>City:${data.address.city} </p>
                 <p>City:${data.address.city} </p>
                 <p>Zip:${data.address.zipcode} </p>
-                <p>Location </br>lat:${data.address.geo.lat}</br>lng:${data.address.geo.lng}</p>
+                <p>Current Location </br>unknown</p>
                 <button id="idBut" value="${data.id} " style="background-color: green;">All posts</button>
-            </div>     
-        `;
+            </div>`;
         
           const div = document.createElement("div");
           div.innerHTML = template;
@@ -43,6 +42,23 @@ function pageOnload() {
           let userPost = document.getElementById("user-post");
           userPost.innerHTML = "";
 
+          function displayUserData(data) {
+            let lati = data.address.geo.lat;
+            let long = data.address.geo.lng;
+            let currentLocation;
+            currentAddress();
+
+            async function currentAddress() {
+              let resultLocations = await fetch(
+                "http://mapquestapi.com/geocoding/v1/reverse?key=q5N7YWFQnHlQCfx0KyD5d1qoATAAFezV&location=" +
+                  lati + "," +long
+              );
+              let Location = await resultLocations.json();
+              if (Location.results.locations.street === "") {
+                navigator.geolocation.getCurrentPosition(latLong);
+              }
+            }
+            }
           async function UserPost() {
             let userId = getPost.value;
             let Result = await fetch(
@@ -65,8 +81,7 @@ function pageOnload() {
                         <p>Body:${postData.body} </p>
                         <button id="commentBut" value="${postId} " style="background-color: blue;">List of comments</button>
                         <div id="list-comments"> </div>
-                    </div>     
-                `;
+                    </div> `;
             const divPost = document.createElement("user-post");
             divPost.innerHTML = PostTemplate;
             userPost.append(divPost);
@@ -112,4 +127,5 @@ function pageOnload() {
 }
 }
 }
+
 window.onload = pageOnload;
