@@ -75,3 +75,60 @@ window.onload = function () {
             showUserPost(postData);
           });
       }
+      function showUserPost(postData) {
+        console.log(postData);
+        let postId = postData.id;
+        let userPostTemplate = `     
+                  <div class="col">
+                  <h3 style="color:blue; font-weight: bold;"> User post:</h3>
+                      <p>Title: ${postData.title}</p>
+                      <p>Body:${postData.body} </p>
+                      <button id="commentBut" value="${postId} " style="background-color: lawngreen;"> View comments</button>
+                      <div id="list-comments"> </div>
+                  </div>     
+              `;
+        const divPost = document.createElement("user-post");
+        divPost.innerHTML = userPostTemplate;
+        userPost.append(divPost);
+        let postCommentBut = document.getElementById("commentBut");
+        postCommentBut.id = "commentDisplay";
+        let userComment = document.getElementById("list-comments");
+        userComment.id = "list-of-comments";
+        postCommentBut.addEventListener("click", fetchComments, false);
+
+
+
+        async function fetchComments() {
+          const commentResult = await fetch(
+            "https://jsonplaceholder.typicode.com/comments"
+          );
+          const commentJson = await commentResult.json();
+          let comId = Number(postCommentBut.value);
+
+          from(commentJson)
+            .pipe(filter((commentDta) => commentDta.postId === comId))
+            .subscribe((commentDta) => {
+              showComments(commentDta);
+            });
+
+
+          function showComments(commentDta) {
+            console.log(commentDta);
+            let commentTemplate = `     
+                              <div class="col">
+                              <h6 style="color: red;">Comment:</h6>
+                                  <p>name:  ${commentDta.name}</p>
+                                  <p>email:   ${postData.body} </p>
+                                  <p>comment: ${postData.body} </p>
+                              </div>     
+                          `;
+
+            const postComment = document.createElement("post-comments");
+            postComment.innerHTML = commentTemplate;
+            userComment.append(postComment);
+          }
+        }
+      }
+    }
+  }
+}
