@@ -75,43 +75,68 @@ document.getElementById("search-button").onclick=  fetchUser;
  
                     //     }
                              
-                    async function fetchComments() {
-                        const commentResult = await fetch( "https://jsonplaceholder.typicode.com/comments" );
+                //     async function fetchComments() {
+                //         const commentResult = await fetch( "https://jsonplaceholder.typicode.com/comments" );
                          
                        
-                        const commentJson = await commentResult.json();
-                        let comId = Number(postCommentBut.value);
-                        //    console.log(commentJson)
-                        from(commentJson)
-                          .pipe(filter((commentDta) => commentDta.postId === comId))
-                          .subscribe((commentDta) => {
-                            displayComments(commentDta);
-                          });
+                //         const commentJson = await commentResult.json();
+                //         let comId = Number(postCommentBut.value);
+                //         //    console.log(commentJson)
+                //         from(commentJson)
+                //           .pipe(filter((commentDta) => commentDta.postId === comId))
+                //           .subscribe((commentDta) => {
+                //             displayComments(commentDta);
+                //           });
             
-                        ///////////////////////////////////////////////////////////////////////////////////////////
+                //         ///////////////////////////////////////////////////////////////////////////////////////////
             
-                         function displayComments(commentDta) {
+                //          function displayComments(commentDta) {
                            
-                       console.log(commentDta);
-                      let commentTemplate = `     
-                                       <div class="col">
-                                       <h6 style="color: red;">Comment:</h6>
-                                           <p>name:  ${commentDta.name}</p>
-                                           <p>email:   ${postData.body} </p>
-                                           <p>comment: ${postData.body} </p>
-                                       </div>     
-                                   `;
+                //        console.log(commentDta);
+                //       let commentTemplate = `     
+                //                        <div class="col">
+                //                        <h6 style="color: red;">Comment:</h6>
+                //                            <p>name:  ${commentDta.name}</p>
+                //                            <p>email:   ${postData.body} </p>
+                //                            <p>comment: ${postData.body} </p>
+                //                        </div>     
+                //                    `;
             
-                       const postComment = document.createElement("post-comments");
-                       postComment.innerHTML = commentTemplate;
-                       userComment.append(postComment);
-                     }
-                   }
-                   }
-                   }
-                 }
+                //        const postComment = document.createElement("post-comments");
+                //        postComment.innerHTML = commentTemplate;
+                //        userComment.append(postComment);
+                //      }
+                //    }
+                //    }
+                //    }
+                //  }
               
             
                 
     
 
+                async function fetchComments() {
+                  let result = await fetch('https://jsonplaceholder.typicode.com/comments')
+                  let comResult = await result.json()
+                  console.log(comResult)
+                  let id = Number(postCommentBut.value)
+                  //console.log(id)
+                  let filteredComment = comResult.filter(data => data.postId === id)
+                  let listOfComments = document.getElementById("list-of-comments");
+                  listOfComments.innerHTML = "";
+                  filteredComment.forEach(d => {
+                      let commentTemplate = ` 
+                              <div class="col">
+                              <p>name: ${d.name}</p>
+                              <p>email:${d.email} </p>
+                              <p>body:${d.body} </p>
+                              `;
+                      const divComment = document.createElement("diV-comment");
+                      divComment.innerHTML = commentTemplate;
+                      listOfComments.appendChild(divComment);
+                  });
+                }
+              }
+            }
+          
+          }
