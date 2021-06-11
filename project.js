@@ -30,7 +30,7 @@ window.onload = function () {
         async function fetchLocation() {
           let resultLocations = await fetch("https://mapquestapi.com/geocoding/v1/reverse?key=mzpDwKtGiMBAQAXNA5fm4Ae7GCkJsRbg&location=81.1496,-37.3159"+ lati +","+ long);
           
-          // my key = mzpDwKtGiMBAQAXNA5fm4Ae7GCkJsRbg
+    
   
   
           let jsonLocation = await resultLocations.json();
@@ -47,7 +47,6 @@ window.onload = function () {
                         <p>Street:${data.address.street} </p>
                         <p>City:${data.address.city} </p>
                         <p>Zip:${data.address.zipcode} </p>
-                        <p>location:${location} </p>
                         <p>Latitude: ${data.address.geo.lat} Longitude: ${data.address.geo.lng}</p>
                         <button id="idBut" value="${id} " style="background-color:white">Get User Post</button>
                     </div>     
@@ -143,79 +142,44 @@ window.onload = function () {
 
 
 
-async function fetchSingleUser() {
-    let responseBody = await fetch('http://jsonplaceholder.typicode.com/users');
-    let json = await responseBody.json();
-    return json;
-}
-async function postSingleUser(){
-    let responseBody= await fetch('https://jsonplaceholder.typicode.com/posts');
-    let json= await responseBody.json();
-    return json;
-}
 
-async function displayUserInHtml() {
-    const employeeDiv = document.getElementById("employee-list");
-    employeeDiv.innerHTML="";
-    const id= document.getElementById("inputId").value;
-    const users = await fetchSingleUser();
-     users.filter(user=>user.id==id)
-         .forEach(user => {
-              let template = `     
-            
-            <div class="col">
-                <h>Name ${user.name} </h3>
-                <p>Id Number: ${user.id}</p>
-                <p>Phone: ${user.phone}</p>
-                <p>Email: ${user.email}</p>
-                <p>Street: ${user.address.street} Suite: ${user.address.suite}</p>
-                <p>City: ${user.address.city} Zipcode: ${user.address.zipcode}</p>
-                <p>Latitude: ${user.address.geo.lat} Longitude: ${user.address.geo.lng}</p>
-            </div>     
-        `
-        const div = document.createElement("div");
-        div.innerHTML = template;
-        employeeDiv.append(div);
-         }); 
-      
-    }
-    async function displayPostHtml(){
-        const employeeDiv=document.getElementById("post");
-        employeeDiv.innerHTML="";
-        const id=document.getElementById("inputId").value;
-        const users=await postSingleUser();
-        users.filter(user=>user.userId==id)
-             .forEach(user=>{
-               let template=  `
-             <div class="col">
-                    <p>Name ${user.userId} </p>
-                    <p>Id Number: ${user.id}</p>
-                    <p>Title: ${user.title}</p>
-                    <p>Bosy: ${user.body}</p>
+//     async function displayPostHtml(){
+//         const employeeDiv=document.getElementById("post");
+//         employeeDiv.innerHTML="";
+//         const id=document.getElementById("inputId").value;
+//         const users=await postSingleUser();
+//         users.filter(user=>user.userId==id)
+//              .forEach(user=>{
+//                let template=  `
+//              <div class="col">
+//                     <p>Name ${user.userId} </p>
+//                     <p>Id Number: ${user.id}</p>
+//                     <p>Title: ${user.title}</p>
+//                     <p>Bosy: ${user.body}</p>
                     
-                </div> 
-             `
-              const div= document.createElement("div");
-              div.innerHTML = template;
-              employeeDiv.append(div);
-             })
-    } async function commentSingleUser(){
-        const responseBody=await fetch('https://jsonplaceholder.typicode.com/comments');
-        const json=await 
-    }
+//                 </div> 
+//              `
+//               const div= document.createElement("div");
+//               div.innerHTML = template;
+//               employeeDiv.append(div);
+//              })
+//     } async function commentSingleUser(){
+//         const responseBody=await fetch('https://jsonplaceholder.typicode.com/comments');
+//         const json=await 
+//     }
 
-window.onload = async function() {
+// window.onload = async function() {
 
-    document.getElementById("getBtn").onclick = async function() {
+//     document.getElementById("getBtn").onclick = async function() {
 
-        await displayUserInHtml();
-        document.getElementById("getPost").onclick=async function(){
-            await displayPostHtml();
-        }
-    }
+//         await displayUserInHtml();
+//         document.getElementById("getPost").onclick=async function(){
+//             await displayPostHtml();
+//         }
+//     }
     
 
-}
+// }
 
 // async function fetchSingleUser() {
 //     let responseBody = await fetch('http://jsonplaceholder.typicode.com/comments'); //'https://randomuser.me/api/'
