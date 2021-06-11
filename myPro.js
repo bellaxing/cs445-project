@@ -8,7 +8,7 @@ function pageOnload() {
   function display() {
     userDatafetch();
     const userId = parseInt(document.getElementById("user-id").value);
-    
+    //fuction to fetch my data
     async function userDatafetch() {
       let userList = document.getElementById("users");
       userList.innerHTML = "";
@@ -41,7 +41,7 @@ function pageOnload() {
           getPost.onclick =UserPost;
           let userPost = document.getElementById("user-post");
           userPost.innerHTML = "";
-
+          //function to disoplay fetch post
           function displayUserData(data) {
             let lati = data.address.geo.lat;
             let long = data.address.geo.lng;
@@ -91,7 +91,7 @@ function pageOnload() {
             userComment.id = "list-of-comments";
             postCommentBut.addEventListener("click",Comments, false);
 
-        
+        //function to display fethed comment
           async function Comments() {
             const commentResult = await fetch(
               "https://jsonplaceholder.typicode.com/comments"
