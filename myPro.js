@@ -8,6 +8,7 @@ function pageOnload() {
   function display() {
     fetchUser();
     const userId = parseInt(document.getElementById("user-id").value);
+  
     async function fetchUser() {
       let userList = document.getElementById("users");
       userList.innerHTML = "";
@@ -35,7 +36,6 @@ function pageOnload() {
         `;
         
           const div = document.createElement("div");
-          div.classList = "row border-top";
           div.innerHTML = template;
           userList.append(div);
           let getPost = document.getElementById("idBut");
