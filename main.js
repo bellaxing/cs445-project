@@ -69,13 +69,49 @@ document.getElementById("search-button").onclick=  fetchUser;
                      postCommentBut=document.getElementById("commentDisplay")
                         postCommentBut.addEventListener("click", fetchComments, false);
                        
-                       async function fetchComments(){
-                           alert("hello")
-                           alert(document.getElementById("commentDisplay").value)
+                    //    async function fetchComments(){
+                    //        console.log("hello")
+                    //        console.log(document.getElementById("commentDisplay").value)
  
-                        }
+                    //     }
+                             
+                    async function fetchComments() {
+                        const commentResult = await fetch( "https://jsonplaceholder.typicode.com/comments" );
+                         
+                       
+                        const commentJson = await commentResult.json();
+                        let comId = Number(postCommentBut.value);
+                        //    console.log(commentJson)
+                        from(commentJson)
+                          .pipe(filter((commentDta) => commentDta.postId === comId))
+                          .subscribe((commentDta) => {
+                            displayComments(commentDta);
+                          });
+            
+                        ///////////////////////////////////////////////////////////////////////////////////////////
+            
+                         function displayComments(commentDta) {
+                           
+                       console.log(commentDta);
+                      let commentTemplate = `     
+                                       <div class="col">
+                                       <h6 style="color: red;">Comment:</h6>
+                                           <p>name:  ${commentDta.name}</p>
+                                           <p>email:   ${postData.body} </p>
+                                           <p>comment: ${postData.body} </p>
+                                       </div>     
+                                   `;
+            
+                       const postComment = document.createElement("post-comments");
+                       postComment.innerHTML = commentTemplate;
+                       userComment.append(postComment);
+                     }
                    }
-     
-    }
+                   }
+                   }
+                 }
+              
+            
+                
+    
 
-}
