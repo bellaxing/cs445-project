@@ -3,9 +3,34 @@ async function fetchSingleUser() {
     let json = await responseBody.json();
     return json;
 }
-
+async function postSingleUser(){
+    let responseBody= await fetch('https://jsonplaceholder.typicode.com/posts');
+    let json= await responseBody.json();
+    return json;
+}
+async function displayPostHtml(){
+    const employeeDiv=document.getElementById("post");
+    employeeDiv.innerHTML="";
+    const id=document.getElementById("inputId").value;
+    const users=await postSingleUser();
+    users.filter(user=>user.userId==id)
+         .forEach(user=>{
+           let template=  `
+         <div class="col">
+                <p>Name ${user.userId} </p>
+                <p>Id Number: ${user.id}</p>
+                <p>Title: ${user.title}</p>
+                <p>Bosy: ${user.body}</p>
+            </div> 
+         `
+          const div= document.createElement("div");
+          div.innerHTML = template;
+          employeeDiv.append(div);
+         })
+}
 async function displayUserInHtml() {
     const employeeDiv = document.getElementById("employee-list");
+    employeeDiv.innerHTML="";
     const id= document.getElementById("inputId").value;
     const users = await fetchSingleUser();
      users.filter(user=>user.id==id)
@@ -13,29 +38,33 @@ async function displayUserInHtml() {
               let template = `     
             
             <div class="col">
-                <h>${user.name} </h3>
-                <p>phone: ${user.phone}</p>
-                <p>${user.email}</p>
-                <p>${user.address.street} ${user.address.suite}</p>
-                <p>${user.address.city} ${user.address.zipcode}</p>
-                <p>${user.address.geo.lat} ${user.address.geo.lng}</p>
+                <h>Name ${user.name} </h3>
+                <p>Id Number: ${user.id}</p>
+                <p>Phone: ${user.phone}</p>
+                <p>Email: ${user.email}</p>
+                <p>Street: ${user.address.street} Suite: ${user.address.suite}</p>
+                <p>City: ${user.address.city} Zipcode: ${user.address.zipcode}</p>
+                <p>Latitude: ${user.address.geo.lat} Longitude: ${user.address.geo.lng}</p>
             </div>     
         `
         const div = document.createElement("div");
         // div.classList = 'row border-top';
         div.innerHTML = template;
         employeeDiv.append(div);
-        // document.body.appendChild(div);
+        //  document.body.appendChild(div);
          }); 
       
     }
 
 window.onload = async function() {
-    await displayUserInHtml();
 
     document.getElementById("getBtn").onclick = async function() {
         await displayUserInHtml();
+        document.getElementById("getPost").onclick=async function(){
+            await displayPostHtml();
+        }
     }
+    
 
 }
 
