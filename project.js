@@ -83,18 +83,18 @@ window.onload = function () {
                         <p>Employee Id: ${postData.id}</p>
                         <p>Title: ${postData.title}</p>
                         <p>Body: ${postData.body} </p>
-                        <button id="commentBut" value="${postData.id} " style="background-color: white;">Get User Comment</button>
-                        <div id="list-comments"> </div>
+                        <button id="commentBtn" value="${postData.id} " style="background-color: white;">Get User Comment</button>
+                        <div id="comments"> </div>
                     </div>     
                 `;
           const divPost = document.createElement("user-post");
           divPost.innerHTML = template;
           userPost.append(divPost);
-          let postCommentBut = document.getElementById("commentBut");
+          let postCommentBut = document.getElementById("commentBtn");
           postCommentBut.id = "commentDisplay";
-          let userComment = document.getElementById("list-comments");
-          userComment.id = "list-of-comments";
-          postCommentBut.addEventListener("click", fetchUserComments, false);
+          let userComment = document.getElementById("comments");
+          userComment.id = "allComments";
+          postCommentBut.addEventListener("click", fetchUserComments);
   
   
   
