@@ -6,10 +6,10 @@ function pageOnload() {
   const { filter } = rxjs.operators;
   search.onclick = display;
   function display() {
-    fetchUser();
+    datafetchUser();
     const userId = parseInt(document.getElementById("user-id").value);
-  
-    async function fetchUser() {
+    
+    async function datafetchUser() {
       let userList = document.getElementById("users");
       userList.innerHTML = "";
       let result = await fetch("http://jsonplaceholder.typicode.com/users");
@@ -18,11 +18,11 @@ function pageOnload() {
       user
         .pipe(filter((element) => element.id === userId))
         .subscribe((data) => {
-          let id = data.id;
+          
           let template = `     
             <div class="col">
                 <h3> user information:</h3>
-                <p>id: ${id}</p>
+                <p>id: ${data.id}</p>
                 <p>name: ${data.name}</p>
                 <p>Email:${data.email} </p>
                 <p style="color: magenta;font-size: larger;">Address</p>
@@ -31,7 +31,7 @@ function pageOnload() {
                 <p>City:${data.address.city} </p>
                 <p>Zip:${data.address.zipcode} </p>
                 <p>Location </br>lat:${data.address.geo.lat}</br>lng:${data.address.geo.lng}</p>
-                <button id="idBut" value="${id} " style="background-color: green;">All posts</button>
+                <button id="idBut" value="${data.id} " style="background-color: green;">All posts</button>
             </div>     
         `;
         
