@@ -1,4 +1,4 @@
-# cs445-project
+# CS445-project
 
 The project will contribute 10 points to your final grade.
 
