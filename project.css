@@ -1,0 +1,31 @@
+/*.mainPost{
+    display: flex;
+    flex-direction: row;
+    
+}
+ #div-title{
+    background-color: violet;
+    text-align: center;
+} 
+
+.left{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    background-color: teal;
+}
+.right{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: tomato;
+}
+.col{
+    font-size: 20px;
+    font-weight: 400;
+    font-style:italic;
+}
+#getPost{
+    text-align-last: right;
+    background-color: brown;
+}*/
