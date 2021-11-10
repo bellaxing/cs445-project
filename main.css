@@ -1,0 +1,15 @@
+.content {
+    max-width: 500px;
+    margin: auto;
+    background-color: rgb(255, 187, 0);
+  }
+
+  h2, div, input , button {
+      color:rgb(19, 17, 17);
+  }
+  #user-posts{
+      background-color: beige;
+  }
+  div #user-comments{
+      background-color: aqua;
+  }
