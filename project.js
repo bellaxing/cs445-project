@@ -4,7 +4,7 @@ window.onload = function(){
     
 }
 
-
+// FETCHING THE USERS BY ID
 async function getData(){
     const div = document.getElementById("userDiv");
         const id = document.getElementById("idInput").value;
@@ -27,7 +27,8 @@ async function getData(){
                     div.innerHTML = template;
         }
          document.getElementById("posts").onclick = getPosts;
-        
+
+// FETCHING AND DISPLAYING POSTS FOR CHOSEN USER WHEN BUTTON IS CLICKED.
         async function getPosts(){
         const id = document.getElementById("idInput").value;
         const response = await fetch(`http://jsonplaceholder.typicode.com/users/${id}/posts`);
@@ -59,6 +60,7 @@ async function getData(){
                    
         }
 
+// VIEWING THE COMMENTS FOR EACH POST WHEN "VIEW BUTTON", BUTTON IS CLICKED 
     let btns = document.querySelectorAll(".commentBtn");
     for(let btn of btns){
         btn.addEventListener("click",async function(){
