@@ -66,7 +66,7 @@ function showPosts(p){
        row.appendChild(dBtn)
        row.appendChild(hr)
        dBtn.onclick = createDetail
-       dBtn.className = "btn btn-secondary";
+       dBtn.className = "btn btn-warning";
        dBtn.innerHTML = "Show Comment";
        innerdiv.appendChild(row);
     })
