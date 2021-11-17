@@ -43,10 +43,36 @@ async function dispUser() {
       <div>
   <div>Title:${post.title}</div>
   <div>Body:${post.body}</div>
-<button class="btn btn-success" id="${post.id}">View Comments</button>
+<button class="btn btn-success btn-comment" id="${post.id}">View Comments</button>
+<div id="c${post.id}"></div>
+
 </div>
 `;
       postdispcol.innerHTML += eachPost;
     });
+
+    ////////////////
+    let btnArr = document.getElementsByClassName("btn-comment");
+    for (let btn of btnArr) {
+      btn.addEventListener("click", viewComment);
+    }
+    async function viewComment() {
+      let postid = this.id;
+      let cmtDiv = document.getElementById(`c${postid}`);
+      if (cmtDiv.innerHTML != "") return;
+      let comRes = await fetch(
+        "https://jsonplaceholder.typicode.com/comments?postId=" + postid
+      );
+      let comBody = await comRes.json();
+      for (let cmt of comBody) {
+        let cmtTem = ` <div>
+          <div class="warning"> Comment:</div>
+          <div>name: ${cmt.name}</div>
+          <div>email: ${cmt.email}</div>
+          <div>body: ${cmt.body}</div>
+      </div>`;
+        cmtDiv.innerHTML += cmtTem;
+      }
+    }
   }
 }
