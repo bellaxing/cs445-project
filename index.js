@@ -8,6 +8,7 @@ let { from } = rxjs;
 async function loadUserInfo() {
 
     document.getElementById("user-info").innerHTML = ""
+    document.getElementById("posts").innerHTML = ""
     let userId = document.getElementById("user-id").value;
     let user = await (((await fetch("https://jsonplaceholder.typicode.com/users/" + userId)).json()));
 
