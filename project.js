@@ -1,10 +1,12 @@
 "use strict"
-window.onload = function(){
+window.onload = function(){  
     document.getElementById("search").onclick = getData;
-
+    
 }
 
+
 async function getData(){
+    const div = document.getElementById("userDiv");
         const id = document.getElementById("idInput").value;
         if(id==="" || id<0 || id >10){
             return;
@@ -21,11 +23,32 @@ async function getData(){
                     <p>Zip: ${user.address.zipcode}</p>
                      <p>current location: ${user.address.geo.lat}-${user.address.geo.lng}</p>
                     <button id="posts">Get Posts</button>`
-                const div = document.getElementById("userDiv");
-                div.innerHTML = template;
+                
+                    div.innerHTML = template;
         }
-
-
-           
+         document.getElementById("posts").onclick = getPosts;
+        
+        async function getPosts(){
+        const id = document.getElementById("idInput").value;
+        const response = await fetch(`http://jsonplaceholder.typicode.com/users/${id}/posts`);
+        const posts = await response.json();
+        const secondCol = document.createElement("div");
+        secondCol.classList ="col-8";
+        const userHeader = document.createElement("h3");
+        userHeader.innerHTML = "User Posts:"
+        secondCol.appendChild(userHeader);
+        div.appendChild(secondCol);
+        
+        for(let i=0;i<posts.length;i++){
+                let template2 = `
+                    <p class="mt-2">Title:${posts[i].title}</p>
+                    <p >Body:${posts[i].body}</p>
+                    <button id="comment">View Comments</button>
+                 </div> `
+                 secondCol.innerHTML += template2;
+        }    
     }
-    
+         
+    }
+
+   
