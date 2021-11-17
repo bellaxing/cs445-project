@@ -5,6 +5,7 @@ window.onload = function () {
     document.getElementById("user-btn").addEventListener("click", fetchUsers )
 }
 
+
 async function fetchUsers() {
     const response = await fetch('https://jsonplaceholder.typicode.com/users/' + document.getElementById("user-id").value)
     const user = await response.json()
@@ -20,7 +21,7 @@ async function fetchUsers() {
         + "<p> <b>Current location</b>: " + user.address.zipcode + "</p>"
         + "<button class='btn btn-secondary' id='post-btn'> Get post</button>";
         
-        
+    document.getElementById("post-btn").addEventListener("click", fetchPosts)
 
 }
 
