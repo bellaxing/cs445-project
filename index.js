@@ -36,7 +36,7 @@ async function fetchPosts () {
         divPost.classList = "col-12 postId-" + document.getElementById("user-id").value
         divPost.innerHTML = 
         "<hr>"
-        + " <h5>User Post </h5>"
+        + " <h3>User Post </h3>"
         + "<p><b>Title</b>:" + post.title +"</p> "
         + "<p><b>Body</b>:" + post.body + "</p>"
         + `<button data-id='${count++}' class='btn btn-secondary comment-btn' type='button'> Comment </button>`
