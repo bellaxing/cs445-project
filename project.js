@@ -13,16 +13,16 @@ async function getData(){
         }else{
             const response = await fetch("http://jsonplaceholder.typicode.com/users/"+id);
             const user = await response.json();
-            let template = ` <div class="col-4">
-                    <h3 class="fw-bold">User Information:</h3>
+            let template = ` <div class="col-4 border">
+                    <h3 class="fw-bold mt-2">User Information:</h3>
                     <p>Name: ${user.name}</p>
                     <p>Email: ${user.email}</p>
-                    <h4 class="text-danger">Address</h4>
+                    <h4 class="text-danger">Address:</h4>
                     <p>Street: ${user.address.street}</p>
                     <p>City: ${user.address.city}</p>
                     <p>Zip: ${user.address.zipcode}</p>
                      <p>current location: ${user.address.geo.lat}-${user.address.geo.lng}</p>
-                    <button class="btn btn-warning" id="posts">Get Posts</button>`
+                    <button class="btn btn-success mt-2" id="posts">Get Posts</button>`
                 
                     div.innerHTML = template;
         }
@@ -38,6 +38,7 @@ async function getData(){
         secondCol.classList ="col-8";
         const userHeader = document.createElement("h3");
         userHeader.innerHTML = "User Posts:"
+        userHeader.classList="fw-bold"
         secondCol.appendChild(userHeader);
         div.appendChild(secondCol);
         
@@ -51,7 +52,7 @@ async function getData(){
                     commentBox.id = `${posts[i].id}c`;
                     commentBtn.innerHTML = "View Comment";
                     commentBtn.id = `${posts[i].id}`;
-                    commentBtn.classList = "commentBtn";  
+                    commentBtn.classList = "commentBtn btn btn-info";  
                      secondCol.innerHTML += template2;
                     secondCol.appendChild(commentBtn);
                     secondCol.appendChild(commentBox); 
@@ -69,7 +70,8 @@ async function getData(){
             console.log(comments);
            
              for(let comment of comments){
-             let commentDiv = document.createElement("div");  
+             let commentDiv = document.createElement("div");
+             commentDiv.classList = "border p-2"  
                 let template3 = `
                     <p class="text-danger">Comment:</p>
                     <p>Name:${comment.name}</p><br>
