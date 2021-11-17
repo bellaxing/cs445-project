@@ -13,15 +13,15 @@ async function getData(){
         }else{
             const response = await fetch("http://jsonplaceholder.typicode.com/users/"+id);
             const user = await response.json();
-            let template = ` <div class="col-4 border">
+            let template = ` <div class="col-4 border shadow p-4 mb-4 bg-white">
                     <h3 class="fw-bold mt-2">User Information:</h3>
-                    <p>Name: ${user.name}</p>
-                    <p>Email: ${user.email}</p>
+                    
+                    <p> <span class="fw-bold">Name:</span>${user.name}</p>
+                    <p><span class="fw-bold">Email:</span> ${user.email}</p>
                     <h4 class="text-danger">Address:</h4>
-                    <p>Street: ${user.address.street}</p>
-                    <p>City: ${user.address.city}</p>
-                    <p>Zip: ${user.address.zipcode}</p>
-                     <p>current location: ${user.address.geo.lat}-${user.address.geo.lng}</p>
+                    <p><span class="fw-bold">City:</span>${user.address.city}</p>
+                    <p><span class="fw-bold">Zip:</span>${user.address.zipcode}</p>
+                     <p><span class="fw-bold">Current Location:</span>${user.address.geo.lat}-${user.address.geo.lng}</p>
                     <button class="btn btn-success mt-2" id="posts">Get Posts</button>`
                 
                     div.innerHTML = template;
@@ -36,23 +36,20 @@ async function getData(){
 
         const secondCol = document.createElement("div");
         secondCol.classList ="col-8";
-        const userHeader = document.createElement("h3");
-        userHeader.innerHTML = "User Posts:"
-        userHeader.classList="fw-bold"
-        secondCol.appendChild(userHeader);
         div.appendChild(secondCol);
         
         for(let i=0;i<posts.length;i++){
                 let template2 = `
-                    <p class="mt-2">Title:${posts[i].title}</p>
-                    <p >Body:${posts[i].body}</p>
+                     <h4 class="fw-bold mt-2">User Post:</h4>
+                    <p class="mt-2"><span class="fw-bold">Title:</span>${posts[i].title}</p>
+                    <p><span class="fw-bold">Body:</span>${posts[i].body}</p>
                      `
                     let commentBtn = document.createElement("button");
                     let commentBox = document.createElement("div");
                     commentBox.id = `${posts[i].id}c`;
                     commentBtn.innerHTML = "View Comment";
                     commentBtn.id = `${posts[i].id}`;
-                    commentBtn.classList = "commentBtn btn btn-info";  
+                    commentBtn.classList = "commentBtn btn btn-success";  
                      secondCol.innerHTML += template2;
                     secondCol.appendChild(commentBtn);
                     secondCol.appendChild(commentBox); 
@@ -71,12 +68,12 @@ async function getData(){
            
              for(let comment of comments){
              let commentDiv = document.createElement("div");
-             commentDiv.classList = "border p-2"  
+             commentDiv.classList = "border border-2 border-success p-2 shadow p-2 mb-2 bg-white"  
                 let template3 = `
                     <p class="text-danger">Comment:</p>
-                    <p>Name:${comment.name}</p><br>
-                    <p>Email:${comment.email}</p><br>
-                    <p>Body:${comment.body}</p><br>  
+                    <p><span class="fw-bold">Name:</span>${comment.name}</p><br>
+                    <p><span class="fw-bold">Email:</span>${comment.email}</p><br>
+                    <p><span class="fw-bold">Body:</span>${comment.body}</p><br>  
             `
                 commentDiv.innerHTML += template3;
                 document.getElementById(`${this.id}c`).appendChild(commentDiv);
