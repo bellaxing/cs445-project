@@ -2,9 +2,9 @@
 
 window.onload = function () {
     document.getElementById('btn').addEventListener('click', function () {
-          document.getElementById('wrapper').innerHTML = null
+        document.getElementById('wrapper').innerHTML = null
         document.getElementById('posts').innerHTML = null
-          document.getElementById('comment').innerHTML = null
+        document.getElementById('comment').innerHTML = null
         renderEmp()
 
     });
