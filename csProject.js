@@ -25,6 +25,7 @@ async function userIdSearch() {
                  <div> Street: ${userInfo.address.street}</div>
                  <div> City: ${userInfo.address.city}</div>
                  <div> Zip: ${userInfo.address.zipcode}</div>
+                 <div> Zip: ${userInfo.address.currentLocation}</div>
                
            
             <hr>
@@ -32,6 +33,7 @@ async function userIdSearch() {
   let getPost = document.createElement("button");
   getPost.innerHTML = "Get Posts";
   getPost.onclick = async function () {
+    document.getElementById("posts").innerHTML = "";
     const IdNumber = document.getElementById("idNo").value;
 
     const postsUser = await fetch(
@@ -39,27 +41,33 @@ async function userIdSearch() {
     );
     const postInfo = await postsUser.json();
     postInfo.forEach((post) => {
-      document.getElementById(
-        "posts"
-      ).innerHTML += `<b>Posts:</b><br> title: ${post.title} <br> body:${post.body} <br>`;
+      let postContent = document.createElement("div");
+
+      postContent.innerHTML = `<b>Posts:</b><br> title: ${post.title} <br> body:${post.body} <br>`;
+
       let viewComment = document.createElement("button");
-      let commentBox = document.createElement("div");
+      viewComment.style.backgroundColor = "blue";
+      let commentInfo = document.createElement("div");
       viewComment.innerHTML = "View Comments";
       viewComment.onclick = async function () {
+        commentInfo.innerHTML = "";
         let result = await fetch(
           "https://jsonplaceholder.typicode.com/comments?postId=" + post.id
         );
         let comments = await result.json();
+        console.log(comments);
         comments.forEach((comment) => {
-          commentBox.innerHTML = `name: ${comment.name} email: ${comment.email} body: ${comment.body}`;
+          let commentContent = document.createElement("div");
+
+          commentContent.innerHTML = `<p>Comment:</p>name: ${comment.name}<br> email: ${comment.email} <br> body: ${comment.body} <br>`;
+          commentInfo.append(commentContent);
         });
       };
+      document.getElementById("posts").append(postContent);
       document.getElementById("posts").append(viewComment);
-      document.getElementById("posts").append(commentBox);
+      document.getElementById("posts").append(commentInfo);
     });
   };
   document.getElementById("userInfo").innerHTML = template;
   document.getElementById("userInfo").append(getPost);
-
-  //
 }
