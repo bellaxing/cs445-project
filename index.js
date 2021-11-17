@@ -2,7 +2,8 @@
 
 window.onload = function () {
 
-    document.getElementById("user-btn").addEventListener("click", fetchUsers )
+    document.getElementById("user-btn").addEventListener("click", fetchUsers );
+
 }
 
 // fetchusers gets users using the url provided and with the resolved data it populates user detials on the web page.
@@ -11,14 +12,15 @@ async function fetchUsers() {
     const user = await response.json()
     
     const divUserInfo = document.querySelector(".col-4");
-    divUserInfo.innerHTML = "<pre> </pre>" 
-        + "<p> <b>Name</b>: " + user.name + "</p>" 
-        + "<p>" + user.email + "</p>" 
+    divUserInfo.innerHTML = "<pre></pre>" 
+        + "<h3>User Information</h3>"
+        + "<p class='ps-3'> <b>Name</b>: " + user.name + "</p>" 
+        + "<p class='ps-3'>" + user.email + "</p>" 
         + "<h3>Address</h3>"
-        + "<p> <b>Street</b>: " + user.address.street + "</p>"
-        + "<p> <b>City</b>: " + user.address.city + "</p>"
-        + "<p> <b>Zip</b>: " + user.address.zipcode + "</p>"
-        + "<p> <b>Current location</b>: " + user.address.zipcode + "</p>"
+        + "<p class='ps-3'> <b>Street</b>: " + user.address.street + "</p>"
+        + "<p class='ps-3'> <b>City</b>: " + user.address.city + "</p>"
+        + "<p class='ps-3'> <b>Zip</b>: " + user.address.zipcode + "</p>"
+        + "<p class='ps-3'> <b>Current location</b>: " + user.address.zipcode + "</p>"
         + "<button class='btn btn-secondary' id='post-btn'> Get post</button>";
         
     document.getElementById("post-btn").addEventListener("click", fetchPosts)
@@ -43,4 +45,31 @@ async function fetchPosts () {
 
         divUserInfo.appendChild(divPost)
     });
+    
+}
+
+async function fetchComments () {
+    const commentBtns = Array.from(document.querySelectorAll(".comment-btn"));
+    for(let i = 0 ; i < commentBtns.length; i++){
+        let count = i + 1;
+        commentBtns[i].id =  count++;
+    }
+
+    commentBtns.forEach(btn => {
+        btn.addEventListener('click', async function () {
+            const response = await fetch('https://jsonplaceholder.typicode.com/comments?postId=' + btn.id);
+            const result = await response.json();
+            console.log(result)
+
+            result.forEach(comment => {
+                const divPost = document.querySelector(".postId-" + document.getElementById("user-id").value);
+                divPost.innerHTML += "<div class='showtext'>"
+                    + "<h5>Comment</h5>"
+                    + "<p>Name: " + comment.name + "</p>"
+                    + "<p>Email: " + comment.email + "</p>"
+                    + "<p>Body: " + comment.body + "</p>"
+                "</div>"
+            });
+        })
+    })
 }
