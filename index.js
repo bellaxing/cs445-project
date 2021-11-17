@@ -19,7 +19,8 @@ async function loadUserInfo() {
    <p>Address: </p>
    <p> Street: ${user.address.street} </p>  
    <p>City: ${user.address.city}  </p>  
-   <p>Zip: ${user.address.zipcode}  </p> `
+   <p>Zip: ${user.address.zipcode}  </p> 
+   <p>Location: ${user.address.geo.lat}-${user.address.geo.lng}</p>`
 
     let getPosts = document.createElement("button");
     getPosts.innerHTML = "Get Posts";
