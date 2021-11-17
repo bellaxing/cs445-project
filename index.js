@@ -8,7 +8,7 @@ async function fetchUsers() {
     const response = await fetch('https://jsonplaceholder.typicode.com/users/' + document.getElementById("user-id").value)
     const user = await response.json()
     
-    const divUserInfo = document.querySelector(".col-4");
+    const divUserInfo = document.querySelector(".user-info");
     divUserInfo.innerHTML = "<pre></pre>" 
         + "<h3>User Information</h3>"
         + "<p class='ps-3'> <b>Name</b>: " + user.name + "</p>" 
@@ -31,7 +31,7 @@ async function fetchPosts () {
 
     userPost.forEach(function(post, index){
         let count = index + 1;
-        const divUserInfo = document.querySelector(".col-7.row");
+        const divUserInfo = document.querySelector(".user-post");
         const divPost= document.createElement("div")
         divPost.classList = "col-12 postId-" + document.getElementById("user-id").value
         divPost.innerHTML = 
