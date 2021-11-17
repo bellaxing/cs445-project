@@ -17,9 +17,9 @@ async function userIdSearch() {
   // userInformation.append(div1);
   let template = `
            
-                <div> <h3> User Information </h3></div>
+                <br><div> <h3> User Information </h3></div>
                 
-                 <div> Name: ${userInfo.name}</div><br>
+                 <div> <span class="fw-bold"> Name: </span> ${userInfo.name}</div><br>
                  <div> Email: ${userInfo.email}</div><br>
                  <div> <h5 style="color:Tomato" >Addrees <h5></div>
                  <div> Street: ${userInfo.address.street}</div><br>
@@ -45,7 +45,7 @@ async function userIdSearch() {
     postInfo.forEach((post) => {
       let postContent = document.createElement("div");
 
-      postContent.innerHTML = `<h3> User posts:</h3><br> title: ${post.title} <br><br> body:${post.body} <br><br>`;
+      postContent.innerHTML = `<br><h3> User posts:</h3> <span class="fw-bold">title:</span> ${post.title} <br><br> <span class="fw-bold">body:</span>${post.body} <br><br>`;
 
       let viewComment = document.createElement("button");
       viewComment.style.backgroundColor = "aqua";
@@ -62,7 +62,7 @@ async function userIdSearch() {
         comments.forEach((comment) => {
           let commentContent = document.createElement("div");
 
-          commentContent.innerHTML = `<div style="color:Tomato ">Comment:</div> name: ${comment.name}<br> <br> email: ${comment.email} <br><br> body: ${comment.body} <br><br>`;
+          commentContent.innerHTML = `<div style="color:Tomato ">Comment:</div><span class="fw-bold"> name:</span> ${comment.name}<br> <br> <span class="fw-bold">email</span>: ${comment.email} <br><br><span class="fw-bold"> body: </span>${comment.body} <br>`;
           commentInfo.append(commentContent);
         });
       };
