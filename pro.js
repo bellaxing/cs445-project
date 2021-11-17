@@ -32,7 +32,10 @@ function postEmployees(users) {
            </div>
            
            `;
-       
+        let importPost = fetch('https://jsonplaceholder.typicode.com/posts?userId=' + inputId)
+        importPost.then(x => x.json()).then(p => showPosts(p))
+
+
         let row = document.createElement('div');
         row.className = 'row';
         row.innerHTML = user;
