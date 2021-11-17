@@ -54,10 +54,11 @@ async function fetchComments () {
         btn.addEventListener('click', async function (e) {
             const response = await fetch('https://jsonplaceholder.typicode.com/comments?postId=' +  e.currentTarget.dataset.id);
             const result = await response.json();
-
+            
+            const divPost = e.target.parentNode;
             result.forEach(comment => {
-                const divPost = document.querySelector(".postId-" + document.getElementById("user-id").value);
-                divPost.innerHTML += "<div class='showtext'>"
+                
+                divPost.innerHTML += "<div class='show-comment'>"
                     + "<h5>Comment</h5>"
                     + "<p>Name: " + comment.name + "</p>"
                     + "<p>Email: " + comment.email + "</p>"
