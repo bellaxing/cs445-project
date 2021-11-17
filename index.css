@@ -1,4 +1,8 @@
 
+.container-fluid{
+    background-color:#ebc289
+}
+
 .pt-5 {
     background-color: rgb(163, 206, 245);
 }
