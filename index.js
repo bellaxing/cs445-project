@@ -45,3 +45,30 @@ function postEmployees(users) {
 
     })
 }
+
+function showPosts(p){
+    
+    let innerdiv = document.getElementById('detailcol');
+    from(p).subscribe(data=>{
+     let post = `
+       <div class="col">
+       
+       <p class="text-end"><b> ${data.title}</b></p>
+       <p class="text-end">${data.body}</p>
+       </div>
+       
+       `;
+    let row = document.createElement('div');
+    let hr = document.createElement('hr')
+       row.className = 'row';
+       row.innerHTML = post;
+       let dBtn = document.createElement('button')
+       row.appendChild(dBtn)
+       row.appendChild(hr)
+    //    dBtn.onclick = createDetail
+       dBtn.className = "btn btn-secondary";
+       dBtn.innerHTML = "Show Comment";
+       innerdiv.appendChild(row);
+    })
+}
+
