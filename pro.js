@@ -9,7 +9,7 @@ async function userFetch() {
     let result = await fetch('https://jsonplaceholder.typicode.com/users')
     let res = await result.json()
     document.getElementById('col').innerHTML = ""
-    document.getElementById('commentcol').innerHTML = ""
+    document.getElementById('col2').innerHTML = ""
 
     postEmployees(res)
 }
@@ -75,7 +75,7 @@ function createDetail(){
    
     let inputId = +document.getElementById('userinput').value;
     
-    let innerdiv = document.getElementById('commentcol');
+    let innerdiv = document.getElementById('col2');
     innerdiv.innerHTML=""
     let chead = document.createElement('h4')
     chead.innerHTML = 'Comments'
