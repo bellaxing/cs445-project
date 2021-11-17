@@ -57,12 +57,16 @@ async function fetchComments () {
 
             result.forEach(comment => {
                 const divPost = document.querySelector(".postId-" + document.getElementById("user-id").value);
-                divPost.innerHTML += "<div class='showtext'>"
+                const divComment = document.createElement('div');
+                divComment.classList = "user-comment";
+
+                divComment.innerHTML = "<div class='showtext'>"
                     + "<h5>Comment</h5>"
                     + "<p>Name: " + comment.name + "</p>"
                     + "<p>Email: " + comment.email + "</p>"
                     + "<p>Body: " + comment.body + "</p>"
                 "</div>"
+                divPost.appendChild(divComment)
             });
         });
     });
