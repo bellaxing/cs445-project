@@ -29,31 +29,31 @@ window.onload = function () {
     document.getElementById("user").innerHTML = card;
   }
 
-  function showPost(arr) {
-    console.log(arr);
-    let place = document.getElementById("first");
-    let head = document.createElement("h4");
-    head.innerHTML = "Posts";
-    place.appendChild(head);
-    let post = "";
-    arr.forEach((item) => {
-      post += `
-      <div class="col">
-       <p class=""> ${item.title}</p>
-       <p class="">${item.body}</p>
+  function showPost(p) {
+    let innerdiv = document.getElementById("first");
+    let phead = document.createElement("h4");
+    phead.innerHTML = "POSTS";
+    innerdiv.appendChild(phead);
+    from(p).subscribe((data) => {
+      let post = `
+       <div class="col">
+
+       <p class="text-end"><b> ${data.title}</b></p>
+       <p class="text-end">${data.body}</p>
        </div>
-      `;
+
+       `;
+      let row = document.createElement("div");
+      let hr = document.createElement("hr");
+      row.className = "row";
+      row.innerHTML = post;
+      let dBtn = document.createElement("button");
+      row.appendChild(dBtn);
+      row.appendChild(hr);
+      dBtn.onclick = detail;
+      dBtn.className = "btn btn-secondary";
+      dBtn.innerHTML = "Show Comment";
+      innerdiv.appendChild(row);
     });
-    let div = document.createElement("div");
-    div.className = "row";
-    div.innerHTML = post;
-    let btn = document.createElement("button");
-    let hr = document.createElement("hr");
-    div.appendChild(btn);
-    row.appendChild(hr);
-    btn.onclick = createDetail;
-    btn.className = "btn btn-secondary";
-    btn.innerHTML = "Show Comment";
-    place.appendChild(div);
   }
 };
