@@ -20,8 +20,8 @@ async function userIdSearch() {
                 <div> <h3> User Information </h3></div>
                 
                  <div> Name: ${userInfo.name}</div><br>
-                 <div> Email: ${userInfo.email}</div>
-                 <div> <h5>Addrees <h5></div>
+                 <div> Email: ${userInfo.email}</div><br>
+                 <div> <h5 style="color:Tomato" >Addrees <h5></div>
                  <div> Street: ${userInfo.address.street}</div><br>
                  <div> City: ${userInfo.address.city}</div><br>
                  <div> Zip: ${userInfo.address.zipcode}</div><br>
