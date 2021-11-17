@@ -45,4 +45,27 @@ async function renderEmp() {
     TempDiv.appendChild(newDiv);
 
 }
+async function posts() {
+   
+    const TempDiv = document.getElementById('posts');
+    const input = document.getElementById('input').value;
+
+    let result1 = await fetch('http://jsonplaceholder.typicode.com/posts?userId=' + input)
+    let post = await result1.json();
+
+    for (let i = 0; i < post.length; i++) {
+
+        let y = `
+    <p><span>Title:</span> ${post[i].title}</p><br>
+    <p> ${post[i].body}</p>
+    <button id="btn3" onclick="comment()">comment</button><br><br>
+<hr>
+`
+        let newDiv = document.createElement('div');
+        newDiv.innerHTML = y;
+        TempDiv.appendChild(newDiv);
+
+    }
+
+}
 
