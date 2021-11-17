@@ -49,6 +49,9 @@ function postEmployees(users) {
 function showPosts(p){
     
     let innerdiv = document.getElementById('detailcol');
+    let phead = document.createElement('h4')
+    phead.innerHTML = 'POSTS'
+    innerdiv.appendChild(phead)
     from(p).subscribe(data=>{
      let post = `
        <div class="col">
@@ -77,10 +80,12 @@ function createDetail(){
     
     let innerdiv = document.getElementById('commentcol');
     innerdiv.innerHTML=""
-  
+    let chead = document.createElement('h4')
+    chead.innerHTML = 'Comments'
+    innerdiv.appendChild(chead)
     from(fetch('https://jsonplaceholder.typicode.com/comments?postId='+inputId).then(x=>x.json()))
     .subscribe(data=>{
-     console.log(data)
+     
      data.forEach(com=>{
        
          let post = `
