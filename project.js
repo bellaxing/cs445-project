@@ -13,12 +13,12 @@ async function getData(){
         }else{
             const response = await fetch("http://jsonplaceholder.typicode.com/users/"+id);
             const user = await response.json();
-            let template = ` <div class="col-4 border shadow p-4 mb-4 bg-white">
+            let template = ` <div class=" mt-2 col-4 border border-2 shadow p-4 mb-4 bg-white">
                     <h3 class="fw-bold mt-2">User Information:</h3>
                     
                     <p> <span class="fw-bold">Name:</span>${user.name}</p>
                     <p><span class="fw-bold">Email:</span> ${user.email}</p>
-                    <h4 class="text-danger">Address:</h4>
+                    <h4 style="color:coral;">Address:</h4>
                     <p><span class="fw-bold">City:</span>${user.address.city}</p>
                     <p><span class="fw-bold">Zip:</span>${user.address.zipcode}</p>
                      <p><span class="fw-bold">Current Location:</span>${user.address.geo.lat}-${user.address.geo.lng}</p>
@@ -40,13 +40,14 @@ async function getData(){
         
         for(let i=0;i<posts.length;i++){
                 let template2 = `
-                     <h4 class="fw-bold mt-2">User Post:</h4>
+                     <h5 style="color:coral;" class="fw-bold lead mt-2">User Post:</h5>
                     <p class="mt-2"><span class="fw-bold">Title:</span>${posts[i].title}</p>
                     <p><span class="fw-bold">Body:</span>${posts[i].body}</p>
                      `
                     let commentBtn = document.createElement("button");
                     let commentBox = document.createElement("div");
                     commentBox.id = `${posts[i].id}c`;
+                    commentBox.classList = "mt-2"
                     commentBtn.innerHTML = "View Comment";
                     commentBtn.id = `${posts[i].id}`;
                     commentBtn.classList = "commentBtn btn btn-success";  
@@ -70,7 +71,7 @@ async function getData(){
              let commentDiv = document.createElement("div");
              commentDiv.classList = "border border-2 border-success p-2 shadow p-2 mb-2 bg-white"  
                 let template3 = `
-                    <p class="text-danger">Comment:</p>
+                    <p style="color:coral;" class="lead">Comment:</p>
                     <p><span class="fw-bold">Name:</span>${comment.name}</p><br>
                     <p><span class="fw-bold">Email:</span>${comment.email}</p><br>
                     <p><span class="fw-bold">Body:</span>${comment.body}</p><br>  
