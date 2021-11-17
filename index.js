@@ -55,19 +55,14 @@ async function fetchComments () {
             const response = await fetch('https://jsonplaceholder.typicode.com/comments?postId=' +  e.currentTarget.dataset.id);
             const result = await response.json();
             const divPost = e.target.parentNode;
-            const divComment = document.createElement('div');
-            divComment.classList = "user-comments";
 
-            result.forEach(comment => {
-                
-                divComment.innerHTML += "<div class='comment'>"
-                    + "<h5>Comment</h5>"
+            result.forEach((comment,index) => {
+                let count = index + 1;
+                divPost.innerHTML += "<h5>" + "Comment-" + count++ +"</h5>"
                     + "<p>Name: " + comment.name + "</p>"
                     + "<p>Email: " + comment.email + "</p>"
                     + "<p>Body: " + comment.body + "</p>"
-                "</div>"
-                divPost.appendChild(divComment)
-            });
+            })
         });
     });
 }

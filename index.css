@@ -24,14 +24,12 @@
     background-color:lightgoldenrodyellow
 }
 
-.user-comments .hide-comments{
-    background-color:hsl(60, 24%, 93%);
-    display:block;
+.user-comments {
+    background-color:hsl(60, 22%, 93%);
+    
 }
 
-.user-comments {
-    display:none;
-}
+
 .btn.btn-secondary{
     background-color:#46213E
 }
