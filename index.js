@@ -25,21 +25,22 @@ async function fetchUsers() {
 
 }
 
- async function fetchPosts () {
+// fetchPosts gets the posts posted by a user and populate the posts on the web pages
+async function fetchPosts () {
     const response = await fetch('https://jsonplaceholder.typicode.com/posts?userId=' + document.getElementById("user-id").value)
     const userPost = await response.json()
-    
+
     userPost.forEach(function(post){
         const divUserInfo = document.querySelector(".col-7.row");
         const divPost= document.createElement("div")
         divPost.classList = "col-12 postId-" + document.getElementById("user-id").value
         divPost.innerHTML = 
-            "<hr>"
-            + " <h5>User Post </h5>"
-            + "<p><b>Title</b>:" + post.title +"</p> "
-            + "<p><b>Body</b>:" + post.body + "</p>"
-            + "<button class='btn btn-secondary comment-btn' type='button'> Comment </button>"
-        
+        "<hr>"
+        + " <h5>User Post </h5>"
+        + "<p><b>Title</b>:" + post.title +"</p> "
+        + "<p><b>Body</b>:" + post.body + "</p>"
+        + "<button class='btn btn-secondary comment-btn' type='button'> Comment </button>"
+
         divUserInfo.appendChild(divPost)
     });
 }
