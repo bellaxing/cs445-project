@@ -45,7 +45,7 @@ async function fetchPosts () {
 
         divUserInfo.appendChild(divPost)
     });
-    
+    fetchComments ()
 }
 
 async function fetchComments () {
@@ -59,7 +59,6 @@ async function fetchComments () {
         btn.addEventListener('click', async function () {
             const response = await fetch('https://jsonplaceholder.typicode.com/comments?postId=' + btn.id);
             const result = await response.json();
-            console.log(result)
 
             result.forEach(comment => {
                 const divPost = document.querySelector(".postId-" + document.getElementById("user-id").value);
@@ -70,6 +69,6 @@ async function fetchComments () {
                     + "<p>Body: " + comment.body + "</p>"
                 "</div>"
             });
-        })
-    })
+        });
+    });
 }
