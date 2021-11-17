@@ -39,7 +39,7 @@ async function fetchPosts () {
         + " <h5>User Post </h5>"
         + "<p><b>Title</b>:" + post.title +"</p> "
         + "<p><b>Body</b>:" + post.body + "</p>"
-        + `<button data-id='${count++}' class='btn btn-secondary comment-btn' type='button'> Comment </button>"`
+        + `<button data-id='${count++}' class='btn btn-secondary comment-btn' type='button'> Comment </button>`
 
         divUserInfo.appendChild(divPost)
     });
