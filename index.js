@@ -49,14 +49,14 @@ async function fetchPosts () {
 // fetchComments fetches comments on button click and display the text in the web page
 async function fetchComments () {
     const commentBtns = Array.from(document.querySelectorAll(".comment-btn"));
-    for(let i = 0 ; i < commentBtns.length; i++){
-        let count = i + 1;
-        commentBtns[i].id =  count++;
-    }
+    // for(let i = 0 ; i < commentBtns.length; i++){
+    //     let count = i + 1;
+    //     commentBtns[i].id =  count++;
+    // }
 
     commentBtns.forEach(btn => {
-        btn.addEventListener('click', async function () {
-            const response = await fetch('https://jsonplaceholder.typicode.com/comments?postId=' + btn.id);
+        btn.addEventListener('click', async function (e) {
+            const response = await fetch('https://jsonplaceholder.typicode.com/comments?postId=' +  e.currentTarget.dataset.id);
             const result = await response.json();
 
             result.forEach(comment => {
