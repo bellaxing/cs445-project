@@ -43,11 +43,26 @@ async function getData(){
                 let template2 = `
                     <p class="mt-2">Title:${posts[i].title}</p>
                     <p >Body:${posts[i].body}</p>
-                    <button id="comment">View Comments</button>
+                    <button id="${posts[i].id}" class"commentBtn"> View Comments </button>
                  </div> `
                  secondCol.innerHTML += template2;
-        }    
+        }   
+//    VIEW COMMENT  
+
+     const commentBtn = document.querySelectorAll(".commentBtn");
+         for(let btn of commentBtn){
+             console.log(btn);
+            btn.onclick = async function(){
+            const response = await fetch(`http://jsonplaceholder.typicode.com/posts/${this.id}/comments`);
+            const comments = await response.json();
+            console.log(comments);
+        }
     }
+    }
+
+
+
+    
          
     }
 
