@@ -8,7 +8,7 @@ async function userFetch() {
 
     let result = await fetch('https://jsonplaceholder.typicode.com/users')
     let res = await result.json()
-    document.getElementById('detailcol').innerHTML = ""
+    document.getElementById('col').innerHTML = ""
     document.getElementById('commentcol').innerHTML = ""
 
     postEmployees(res)
@@ -20,7 +20,7 @@ function postEmployees(users) {
         filter(x => x.id == inputId)
     ).subscribe(data => {
        
-        let innerdiv = document.getElementById('uInfo');
+        let innerdiv = document.getElementById('for');
         innerdiv.innerHTML = "";
 
         let user = `
@@ -45,7 +45,7 @@ function postEmployees(users) {
 }
 function showPosts(p){
     
-    let innerdiv = document.getElementById('detailcol');
+    let innerdiv = document.getElementById('col');
     let phead = document.createElement('h4')
     phead.innerHTML = 'POSTS'
     innerdiv.appendChild(phead)
