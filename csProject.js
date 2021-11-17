@@ -32,7 +32,7 @@ async function userIdSearch() {
 
   let getPost = document.createElement("button");
   getPost.innerHTML = "Get Posts";
-  getPost.style.backgroundColor = "blue";
+  getPost.style.backgroundColor = "aqua";
 
   getPost.onclick = async function () {
     document.getElementById("posts").innerHTML = "";
@@ -45,10 +45,10 @@ async function userIdSearch() {
     postInfo.forEach((post) => {
       let postContent = document.createElement("div");
 
-      postContent.innerHTML = `<b> User posts:</b><br> title: ${post.title} <br><br> body:${post.body} <br><br>`;
+      postContent.innerHTML = `<h3> User posts:</h3><br> title: ${post.title} <br><br> body:${post.body} <br><br>`;
 
       let viewComment = document.createElement("button");
-      viewComment.style.backgroundColor = "blue";
+      viewComment.style.backgroundColor = "aqua";
       let commentInfo = document.createElement("div");
       viewComment.innerHTML = "View Comments";
 
@@ -62,7 +62,7 @@ async function userIdSearch() {
         comments.forEach((comment) => {
           let commentContent = document.createElement("div");
 
-          commentContent.innerHTML = `<p style="color:Tomato "> Comment:</p> name: ${comment.name}<br> email: ${comment.email} <br> body: ${comment.body} <br>`;
+          commentContent.innerHTML = `<div style="color:Tomato ">Comment:</div> name: ${comment.name}<br> <br> email: ${comment.email} <br><br> body: ${comment.body} <br><br>`;
           commentInfo.append(commentContent);
         });
       };
