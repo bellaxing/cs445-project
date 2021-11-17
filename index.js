@@ -14,16 +14,17 @@ async function dispUser() {
   let dispDiv = document.getElementById("disp");
   dispDiv.innerHTML = " ";
   let userInfo = `<div class="col-4">
-  <h3>User information</h3>
-  <div>name:${user.name}</div>
-  <div>Email:${user.email}</div>
-  <h5 class="text-danger">Address</h5>
+  <h3>User information</h3><br/>
+  <div>name: ${user.name}</div><br/>
+  <div>Email: ${user.email}</div><br/>
+ 
   <div>
-    street:${user.address.street}<br />
-    city:${user.address.city}<br />
+  <h5 class="text-danger">Address</h5>
+    street: ${user.address.street}<br />
+    city:  ${user.address.city}<br />
     zip:${user.address.zip}<br />
-    current location:${user.address.curentLocation}<br /></div>
-    <button class="btn btn-success" id="getPosts">Get posts</button>
+    current location: ${user.address.curentLocation}</div><br />
+    <button style ="background-color: #00ffff" class="btn btn-info" id="getPosts">Get posts</button>
   </div>`;
   dispDiv.innerHTML = userInfo;
   document.getElementById("getPosts").addEventListener("click", dispPost);
@@ -36,15 +37,14 @@ async function dispUser() {
     let postdispcol = document.createElement("div");
     postdispcol.classList = "col-8";
     postdispcol.id = "postDisp";
-    //  postdispcol.innerHTML = `<h3>User Post</h3>`;
     dispDiv.appendChild(postdispcol);
     postBody.forEach((post) => {
       let eachPost = `  
       <div>
-      <h3 class="text-primary">User Post: </h3><br/>
+      <h3 style=" font-weight: bold;color:	#0000CD">User Post: </h3><br/>
         <div>Title: ${post.title}</div><br/>
         <div>Body: ${post.body}</div><br/>
-        <button class="btn btn-success btn-comment" id="${post.id}">View Comments</button><br/>
+        <button style ="background-color: #00ffff" class="btn btn-comment" id="${post.id}">View Comments</button><br/><br/>
         <div id="c${post.id}"></div><br/>
         </div>
         `;
