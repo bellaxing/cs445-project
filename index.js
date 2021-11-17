@@ -1,9 +1,6 @@
 
-
 window.onload = function () {
-
     document.getElementById("user-btn").addEventListener("click", fetchUsers );
-
 }
 
 // fetchusers gets users using the url provided and with the resolved data it populates user detials on the web page.
@@ -48,6 +45,7 @@ async function fetchPosts () {
     fetchComments ()
 }
 
+// fetchComments fetches comments on button click and display the text in the web page
 async function fetchComments () {
     const commentBtns = Array.from(document.querySelectorAll(".comment-btn"));
     for(let i = 0 ; i < commentBtns.length; i++){
