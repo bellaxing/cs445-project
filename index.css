@@ -1,11 +1,19 @@
 
-.container-fluid{
-    background-color:#ebc289
-}
-
 .body {
     background-color: rgb(163, 206, 245);
 }
+
+.container-fluid{
+    background-color:#f7d3a0;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.container{
+    padding-top: 2rem;
+}
+
 
 .user-info {
     background-color:lightgoldenrodyellow
