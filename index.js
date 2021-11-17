@@ -2,9 +2,9 @@
 
 window.onload = function () {
     document.getElementById('btn').addEventListener('click', function () {
-        document.getElementById('wrapper').innerHTML = null
+          document.getElementById('wrapper').innerHTML = null
         document.getElementById('posts').innerHTML = null
-        document.getElementById('comment').innerHTML = null
+          document.getElementById('comment').innerHTML = null
         renderEmp()
 
     });
@@ -46,7 +46,7 @@ async function renderEmp() {
 
 }
 async function posts() {
-   
+
     const TempDiv = document.getElementById('posts');
     const input = document.getElementById('input').value;
 
@@ -69,3 +69,31 @@ async function posts() {
 
 }
 
+
+async function comment() {
+
+    document.getElementById('comment').innerHTML = null
+    const TempDiv = document.getElementById('comment');
+    const input = document.getElementById('input').value;
+
+    let result1 = await fetch('http://jsonplaceholder.typicode.com/comments?postId=' + input)
+    let comment = await result1.json()
+
+    for (let i = 0; i < comment.length; i++) {
+        let y = `
+  
+        <p> <span>Name</span>: ${comment[i].name}</p><br>
+        <p>  <span>Email</span>: ${comment[i].email}</p>
+        <p>  <span>Comment</span>: ${comment[i].body}</p>
+        <hr>
+     
+`
+
+        let newDiv = document.createElement('div');
+        newDiv.innerHTML = y;
+        TempDiv.appendChild(newDiv);
+
+    }
+
+
+}
