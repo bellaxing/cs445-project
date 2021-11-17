@@ -1,4 +1,6 @@
 window.onload = function () {
+  const { from } = rxjs;
+  const { filter } = rxjs.operators;
   let input = document.getElementById("inp");
   let btn = document.getElementById("btn");
   btn.onclick = data;
@@ -20,7 +22,38 @@ window.onload = function () {
         <br>
         `;
     });
+    let posts = fetch(
+      "https://jsonplaceholder.typicode.com/posts?userId=" + input.value
+    );
+    posts.then((x) => x.json()).then((data) => showPost(data));
+    document.getElementById("user").innerHTML = card;
+  }
 
-    document.getElementById("con").innerHTML = card;
+  function showPost(arr) {
+    console.log(arr);
+    let place = document.getElementById("first");
+    let head = document.createElement("h4");
+    head.innerHTML = "Posts";
+    place.appendChild(head);
+    let post = "";
+    arr.forEach((item) => {
+      post += `
+      <div class="col">
+       <p class=""> ${item.title}</p>
+       <p class="">${item.body}</p>
+       </div>
+      `;
+    });
+    let div = document.createElement("div");
+    div.className = "row";
+    div.innerHTML = post;
+    let btn = document.createElement("button");
+    let hr = document.createElement("hr");
+    div.appendChild(btn);
+    row.appendChild(hr);
+    btn.onclick = createDetail;
+    btn.className = "btn btn-secondary";
+    btn.innerHTML = "Show Comment";
+    place.appendChild(div);
   }
 };
