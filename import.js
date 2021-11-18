@@ -1,15 +1,22 @@
 window.onload = function () {
   document.getElementById("btn").onclick = function () {
+   document.getElementById("row1").innerHTML = "";
+    document.getElementById("posts").innerHTML = "";
+    document.getElementById("comments").innerHTML = "";
     let input = +document.getElementById("input").value;
     usersList(input);
+   document.getElementById("input").value = "";
+    
+
   };
 };
 const { from } = rxjs;
 const { filter, map } = rxjs.operators;
 
 async function usersList(input) {
-  let promise = await fetch("http://jsonplaceholder.typicode.com/users");
+  let promise = await fetch("https://jsonplaceholder.typicode.com/users");
   let employee = await promise.json();
+
 
   let row = document.getElementById("row1");
   row.innerHTML = "";
@@ -60,7 +67,7 @@ async function usersList(input) {
 }
 
 async function postList(input) {
-  let promise = await fetch("http://jsonplaceholder.typicode.com/posts?userId=" + input);
+  let promise = await fetch("https://jsonplaceholder.typicode.com/posts?userId=" + input);
   let posts = await promise.json();
   let row = document.getElementById("posts");
   row.innerHTML = "";
@@ -74,19 +81,19 @@ async function postList(input) {
         let comment = document.createElement("input");
         comment.type = "button";
         comment.classList = "btn btn-info w-30";
-        comment.id = "btn-comment";
+        comment.id = `${emp.id}`;
         comment.value = "Comments";
         row.appendChild(title);
         row.appendChild(post);
         row.appendChild(comment);
         row.appendChild(hr);
+        document.getElementById(`${emp.id}`).addEventListener("click", function(){commentList(emp.id)});
       });
-      document.getElementById("btn-comment").addEventListener("click", function(){commentList(input)});
-      onload();
+     
 };
 
 async function commentList(input) {
-    let promise = await fetch("http://jsonplaceholder.typicode.com/comments?postId=" + input);
+    let promise = await fetch("https://jsonplaceholder.typicode.com/comments?postId=" + input);
     let posts = await promise.json();
     console.log(posts);
     let row = document.getElementById("comments");
@@ -110,10 +117,10 @@ async function commentList(input) {
             console.log(row);
         });
 
-      document.getElementById("btn-comment").addEventListener("click", function(){
-        row.innerHTML = "";
-        commentList(input)
-      });
+      // document.getElementById("btn-comment").addEventListener("click", function(){
+      //   row.innerHTML = "";
+      //  // commentList(input)
+      // });
 
   };
 
