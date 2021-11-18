@@ -34,3 +34,11 @@
 .btn.btn-secondary{
     background-color:#46213E
 }
+
+.container-fluid.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    color: white;
+    /* text-align: center; */
+  }
