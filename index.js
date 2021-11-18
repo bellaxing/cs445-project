@@ -66,9 +66,9 @@ async function fetchComments () {
                 let count = index + 1;
                 divPost.innerHTML += "<div class='user-comment'>"
                 + "<h5>" + "Comment-" + count++ +"</h5>"
-                + "<p>Name: " + comment.name + "</p>"
-                + "<p>Email: " + comment.email + "</p>"
-                + "<p>Body: " + comment.body + "</p>"
+                + "<p><b>Name</b>: " + comment.name + "</p>"
+                + "<p><b>Email</b>: " + comment.email + "</p>"
+                + "<p><b>Body</b>: " + comment.body + "</p>"
                 + "</div>"
             })
         });
