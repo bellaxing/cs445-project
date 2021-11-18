@@ -48,7 +48,7 @@ async function fetchPosts () {
 
         divUserPost.appendChild(divPost)
     });
-    fetchComments ()
+    fetchComments () 
 }
 
 
@@ -65,7 +65,7 @@ async function fetchComments () {
             result.forEach((comment,index) => {
                 let count = index + 1;
                 divPost.innerHTML += "<div class='user-comment'>"
-                + "<h5>" + "Comment-" + count++ +"</h5>"
+                + "<h5>" + "Comment-" + count++ + "</h5>"
                 + "<p><b>Name</b>: " + comment.name + "</p>"
                 + "<p><b>Email</b>: " + comment.email + "</p>"
                 + "<p><b>Body</b>: " + comment.body + "</p>"
