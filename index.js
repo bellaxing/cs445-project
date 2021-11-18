@@ -23,7 +23,7 @@ async function dispUser() {
     street: ${user.address.street}<br />
     city:  ${user.address.city}<br />
     zip:${user.address.zip}<br />
-    current location: ${user.address.curentLocation}</div><br />
+    current location: ${user.address.geo.lat}, ${user.address.geo.lng}</div><br />
     <button style ="background-color: #00ffff" class="btn btn-info" id="getPosts">Get posts</button>
   </div>`;
   dispDiv.innerHTML = userInfo;
