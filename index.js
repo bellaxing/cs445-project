@@ -21,9 +21,12 @@ async function fetchUsers() {
         + "<p class='ps-3'>" + user.email + "</p>" 
         + "<h3>Address</h3>"
         + "<p class='ps-3'> <b>Street</b>: " + user.address.street + "</p>"
+        + "<p class='ps-3'> <b>Suite</b>: " + user.address.suite + "</p>"
         + "<p class='ps-3'> <b>City</b>: " + user.address.city + "</p>"
         + "<p class='ps-3'> <b>Zip</b>: " + user.address.zipcode + "</p>"
-        + "<p class='ps-3'> <b>Current location</b>: " + user.address.zipcode + "</p>"
+        + "<p class='ps-3'> <b>Current location</b>: " + "</p>"
+        + "<p class='ps-5'> lat: " + user.address.geo.lat  + "</p>" 
+        + "<p class='ps-5'> lng: " + user.address.geo.lng + "</p>"
         + "<button class='btn btn-secondary' id='post-btn'> Get post</button>";
     
     document.getElementById("post-btn").addEventListener("click", fetchPosts);
