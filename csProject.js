@@ -15,7 +15,7 @@ async function userIdSearch() {
     &includeRoadMetadata=true&includeNearestIntersection=true`
   );
   const currentLo = await locationResponse.json();
-  console.log(currentLo.results[0].locations);
+
   let template = `
            
                 <br><div> <h3> User Information </h3></div>
@@ -49,6 +49,7 @@ async function userIdSearch() {
       postContent.innerHTML = `<br><h3> User posts:</h3> <span class="fw-bold">title:</span> ${post.title} <br><br> <span class="fw-bold">body:</span>${post.body} <br><br>`;
 
       let viewComment = document.createElement("button");
+
       viewComment.style.backgroundColor = "aqua";
       let commentInfo = document.createElement("div");
       viewComment.innerHTML = "View Comments";
