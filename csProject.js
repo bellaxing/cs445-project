@@ -4,7 +4,7 @@ window.onload = function () {
 
 async function userIdSearch() {
   const IdNumber = document.getElementById("idNo").value;
-
+  document.getElementById("posts").innerHTML = "";
   const idUser = await fetch(
     "http://jsonplaceholder.typicode.com/users/" + IdNumber
   );
