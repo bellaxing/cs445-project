@@ -3,7 +3,7 @@ const { from } = rxjs;
 window.onload = function () {
 
     document.getElementById('searchBtn').onclick = fetchUser;
-    //document.getElementById('getPosts').onclick = renderUserPosts;
+
 }
 
 async function fetchUser() {
@@ -12,7 +12,7 @@ async function fetchUser() {
 
     let result = await fetch('http://jsonplaceholder.typicode.com/users/' + userId);
     let userInfoArray = await result.json();
-    console.log(userInfoArray);
+
     renderUserInfo(userInfoArray);
 }
 
@@ -54,7 +54,7 @@ async function renderUserPosts() {
     const userId = document.getElementById('userId').value;
     let result = await fetch('http://jsonplaceholder.typicode.com/posts/?userId=' + userId);
     let userPostsArray = await result.json();
-    console.log(userPostsArray);
+
 
     from(userPostsArray)
         .subscribe(userPost => {
