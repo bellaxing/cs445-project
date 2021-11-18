@@ -53,6 +53,7 @@ function showPosts(p){
     phead.innerHTML = 'POSTS'
     innerdiv.appendChild(phead)
     from(p).subscribe(data=>{
+        
      let post = `
        <div class="col">
        
@@ -68,22 +69,22 @@ function showPosts(p){
        let dBtn = document.createElement('button')
        row.appendChild(dBtn)
        row.appendChild(hr)
-       dBtn.onclick = createDetail
+       dBtn.onclick= function(){ createDetail(data.id)}
        dBtn.className = "btn btn-secondary";
        dBtn.innerHTML = "Show Comment";
        innerdiv.appendChild(row);
     })
 }
-function createDetail(){
+function createDetail(postId){
    
-    let inputId = +document.getElementById('userinput').value;
+    
     
     let innerdiv = document.getElementById('commentcol');
     innerdiv.innerHTML=""
     let chead = document.createElement('h4')
     chead.innerHTML = 'Comments'
     innerdiv.appendChild(chead)
-    from(fetch('https://jsonplaceholder.typicode.com/comments?postId='+inputId).then(x=>x.json()))
+    from(fetch('https://jsonplaceholder.typicode.com/comments?postId='+postId).then(x=>x.json()))
     .subscribe(data=>{
      
      data.forEach(com=>{
