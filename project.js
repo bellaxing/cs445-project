@@ -16,11 +16,12 @@ async function getData(){
             let template = ` <div class=" mt-2 col-4 border border-2 shadow p-4 mb-4 bg-white">
                     <h3 class="fw-bold mt-2">User Information:</h3>
                     
-                    <p> <span class="fw-bold">Name:</span>${user.name}</p>
+                    <p> <span class="fw-bold">Name:</span> ${user.name}</p>
                     <p><span class="fw-bold">Email:</span> ${user.email}</p>
                     <h4 style="color:coral;">Address:</h4>
-                    <p><span class="fw-bold">City:</span>${user.address.city}</p>
-                    <p><span class="fw-bold">Zip:</span>${user.address.zipcode}</p>
+                    <p><span class="fw-bold">Street:</span> ${user.address.street}</p>
+                    <p><span class="fw-bold">City:</span> ${user.address.city}</p>
+                    <p><span class="fw-bold">Zip:</span> ${user.address.zipcode}</p>
                      <p><span class="fw-bold">Current Location:</span>${user.address.geo.lat}-${user.address.geo.lng}</p>
                     <button class="btn btn-success mt-2" id="posts">Get Posts</button>`
                 
@@ -40,9 +41,11 @@ async function getData(){
         
         for(let i=0;i<posts.length;i++){
                 let template2 = `
+                    <div class="border p-2">
                      <h5 style="color:coral;" class="fw-bold lead mt-2">User Post:</h5>
                     <p class="mt-2"><span class="fw-bold">Title:</span>${posts[i].title}</p>
                     <p><span class="fw-bold">Body:</span>${posts[i].body}</p>
+                    </div>
                      `
                     let commentBtn = document.createElement("button");
                     let commentBox = document.createElement("div");
@@ -63,6 +66,7 @@ async function getData(){
     let btns = document.querySelectorAll(".commentBtn");
     for(let btn of btns){
         btn.addEventListener("click",async function(){
+             document.getElementById(`${this.id}c`).innerHTML = "";
             const response = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${this.id}`);
             const comments = await response.json();
             console.log(comments);
