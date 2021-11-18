@@ -45,6 +45,7 @@ async function renderEmp() {
     TempDiv.appendChild(newDiv);
 
 }
+let id;
 async function posts() {
 
     const TempDiv = document.getElementById('posts');
@@ -54,11 +55,12 @@ async function posts() {
     let post = await result1.json();
 
     for (let i = 0; i < post.length; i++) {
+       
 
         let y = `
     <p><span>Title:</span> ${post[i].title}</p><br>
     <p> ${post[i].body}</p>
-    <button id="btn3" onclick="comment()">comment</button><br><br>
+    <button id="btn3" onclick="comment(${post[i].id})">comment</button><br><br>
 <hr>
 `
         let newDiv = document.createElement('div');
@@ -70,13 +72,14 @@ async function posts() {
 }
 
 
-async function comment() {
+async function comment(id) {
+
 
     document.getElementById('comment').innerHTML = null
     const TempDiv = document.getElementById('comment');
-    const input = document.getElementById('input').value;
+    //const input = document.getElementById('input').value;
 
-    let result1 = await fetch('https://jsonplaceholder.typicode.com/comments?postId=' + input)
+    let result1 = await fetch('https://jsonplaceholder.typicode.com/comments?postId=' + id)
     let comment = await result1.json()
 
     for (let i = 0; i < comment.length; i++) {
