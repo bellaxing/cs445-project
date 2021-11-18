@@ -58,10 +58,12 @@ async function fetchComments () {
 
             result.forEach((comment,index) => {
                 let count = index + 1;
-                divPost.innerHTML += "<h5>" + "Comment-" + count++ +"</h5>"
-                    + "<p>Name: " + comment.name + "</p>"
-                    + "<p>Email: " + comment.email + "</p>"
-                    + "<p>Body: " + comment.body + "</p>"
+                divPost.innerHTML += "<div class='user-comment'>"
+                + "<h5>" + "Comment-" + count++ +"</h5>"
+                + "<p>Name: " + comment.name + "</p>"
+                + "<p>Email: " + comment.email + "</p>"
+                + "<p>Body: " + comment.body + "</p>"
+                + "</div>"
             })
         });
     });
