@@ -37,11 +37,14 @@ async function usersList(input) {
       geoLoc.classList = "text-right text-capitalize";
       geoLoc.innerHTML = emp.address.geo.lat + ", " + emp.address.geo.lng;
       let hr = document.createElement("hr");
+      let space = document.createElement("div");
+      space.classList = "col-md-12 text-center mt-3";
       let posts = document.createElement("input");
       posts.type = "button";
       posts.classList = "btn btn-info w-3";
       posts.id = "btn-post";
       posts.value = "Posts";
+      space.appendChild(posts);
       div1.appendChild(name);
       div1.appendChild(email);
       div2.appendChild(address);
@@ -49,7 +52,7 @@ async function usersList(input) {
       div2.appendChild(geoLoc);
       row.appendChild(div1);
       row.appendChild(div2);
-      div2.appendChild(posts);
+      row.appendChild(space);
       row.appendChild(hr);
       
     });
@@ -63,9 +66,9 @@ async function postList(input) {
   row.innerHTML = "";
     from(posts)
       .subscribe((emp) => {
-        let title = document.createElement("div");
+        let title = document.createElement("p");
         title.innerHTML = emp.title;
-        let post = document.createElement("div");
+        let post = document.createElement("p");
         post.innerHTML = emp.body;
         let hr = document.createElement("hr");
         let comment = document.createElement("input");
@@ -79,6 +82,7 @@ async function postList(input) {
         row.appendChild(hr);
       });
       document.getElementById("btn-comment").addEventListener("click", function(){commentList(input)});
+      onload();
 };
 
 async function commentList(input) {
@@ -86,7 +90,7 @@ async function commentList(input) {
     let posts = await promise.json();
     console.log(posts);
     let row = document.getElementById("comments");
-    // row.innerHTML = "";
+    row.innerHTML = "";
       from(posts)
         .subscribe((emp) => {
             console.log(emp);
@@ -105,6 +109,12 @@ async function commentList(input) {
             row.appendChild(hr);
             console.log(row);
         });
+
+      document.getElementById("btn-comment").addEventListener("click", function(){
+        row.innerHTML = "";
+        commentList(input)
+      });
+
   };
 
 
