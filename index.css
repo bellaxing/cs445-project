@@ -1,0 +1,41 @@
+
+.body {
+    background-color: #9890A5;
+}
+
+.container-fluid{
+    background-color:#46213E;
+    color:white;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.container{
+    padding-top: 2rem;
+}
+
+.user-info {
+    background-color:lightgoldenrodyellow;
+    padding-top: 1rem;
+}
+
+.user-post {
+    background-color:lightgoldenrodyellow
+}
+
+.user-comment {
+    background-color:hsl(60, 22%, 93%);
+ 
+}
+
+.btn.btn-secondary{
+    background-color:#46213E
+}
+
+.container-fluid.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    color: white;
+}
