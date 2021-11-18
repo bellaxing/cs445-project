@@ -11,7 +11,7 @@ async function getData(){
         if(id==="" || id<0 || id >10){
             return;
         }else{
-            const response = await fetch("http://jsonplaceholder.typicode.com/users/"+id);
+            const response = await fetch("https://jsonplaceholder.typicode.com/users/"+id);
             const user = await response.json();
             let template = ` <div class=" mt-2 col-4 border border-2 shadow p-4 mb-4 bg-white">
                     <h3 class="fw-bold mt-2">User Information:</h3>
@@ -32,7 +32,7 @@ async function getData(){
 // FETCHING AND DISPLAYING POSTS FOR CHOSEN USER WHEN BUTTON IS CLICKED.
         async function getPosts(){
         const id = document.getElementById("idInput").value;
-        const response = await fetch(`http://jsonplaceholder.typicode.com/users/${id}/posts`);
+        const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}/posts`);
         const posts = await response.json();
 
         const secondCol = document.createElement("div");
