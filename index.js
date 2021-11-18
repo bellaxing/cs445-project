@@ -8,6 +8,7 @@ window.onload = function () {
      });
 }
 
+
 // fetchusers gets users using the url provided and with the resolved data it populates user detials on the web page.
 async function fetchUsers() {
     const response = await fetch('https://jsonplaceholder.typicode.com/users/' + document.getElementById("user-id").value)
