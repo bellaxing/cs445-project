@@ -40,7 +40,7 @@ async function fetchPosts () {
         const divPost= document.createElement("div")
         divPost.classList = "col-12 postId-" + document.getElementById("user-id").value
         divPost.innerHTML = 
-        "<hr>"
+        "<hr style='height:2px'>"
         + " <h3>User Post </h3>"
         + "<p><b>Title</b>:" + post.title +"</p> "
         + "<p><b>Body</b>:" + post.body + "</p>"
