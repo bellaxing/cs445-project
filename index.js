@@ -12,7 +12,7 @@ window.onload = function () {
 }
 
 async function renderEmp() {
-    let result = await fetch('http://jsonplaceholder.typicode.com/users')
+    let result = await fetch('https://jsonplaceholder.typicode.com/users')
     let temp = await result.json()
     const TempDiv = document.getElementById('wrapper');
     const input = document.getElementById('input').value;
@@ -50,7 +50,7 @@ async function posts() {
     const TempDiv = document.getElementById('posts');
     const input = document.getElementById('input').value;
 
-    let result1 = await fetch('http://jsonplaceholder.typicode.com/posts?userId=' + input)
+    let result1 = await fetch('https://jsonplaceholder.typicode.com/posts?userId=' + input)
     let post = await result1.json();
 
     for (let i = 0; i < post.length; i++) {
@@ -76,7 +76,7 @@ async function comment() {
     const TempDiv = document.getElementById('comment');
     const input = document.getElementById('input').value;
 
-    let result1 = await fetch('http://jsonplaceholder.typicode.com/comments?postId=' + input)
+    let result1 = await fetch('https://jsonplaceholder.typicode.com/comments?postId=' + input)
     let comment = await result1.json()
 
     for (let i = 0; i < comment.length; i++) {
