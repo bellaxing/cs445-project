@@ -31,6 +31,48 @@ window.onload = function(){
                 <p><b>zip-code:</b>${val.address.zipcode}</span></p>
                 <pre><p><b>current location:</b><span>${curent_loc} </span></p></pre><br>
                 <button id="get_posts" type="button">get post</button>`
+
+                let get_posts = document.getElementById("get_posts")
+       
+        get_posts.addEventListener("click",()=>{
+            let posts = from(fetch(`http://jsonplaceholder.typicode.com/posts?userId=${val.id}`).then(response=>response.json()))
+                
+                posts.subscribe(result=>{
+                     
+                       let post_div_child,div_id,titles,tite_tex,bodys,bod_tex,commentbtn,btnid,btn_txt,post_header,header_tex
+                       
+                   result.map((postarr,index) =>{
+                    post_div_child = document.createElement("div")
+                    div_id = document.createAttribute("id")
+                    div_id.value = "post_div_child_id"
+                    post_div_child.setAttributeNode(div_id)
+                    post_div.appendChild(post_div_child)
+
+                        post_header = document.createElement("h3")
+                        header_tex = document.createTextNode("user posts")
+                        post_header.appendChild(header_tex)
+                        post_div_child.appendChild(post_header)
+                       
+                         titles = document.createElement("p")
+                         tite_tex = document.createTextNode(`title:-${postarr.title}`)
+                        titles.appendChild(tite_tex)
+                        post_div_child.appendChild(titles)
+
+                         bodys = document.createElement("p")
+                         bod_tex = document.createTextNode(`body:-${postarr.body}`)
+                        bodys.appendChild(bod_tex)
+                        post_div_child.appendChild(bodys)
+
+                         commentbtn = document.createElement("button")
+                         btnid = document.createAttribute("id")
+                        btnid.value = `${index+1}`
+                         btn_txt = document.createTextNode("comments")
+                        commentbtn.appendChild(btn_txt)
+                        post_div_child.appendChild(commentbtn)
+                        //console.log()
+                   })
+                })
+                })
                 })
             })
         })
