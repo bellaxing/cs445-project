@@ -9,12 +9,13 @@ async function userIdSearch() {
     "http://jsonplaceholder.typicode.com/users/" + IdNumber
   );
   const userInfo = await idUser.json();
-
-  // const userInformation = document.getElementById("userInfo");
-  // userInformation.innerHTML = "";
-  // let div1 = document.createElement("div");
-  // div1.classList = "col-6";
-  // userInformation.append(div1);
+  const locationResponse = await fetch(
+    `http://www.mapquestapi.com/geocoding/v1/reverse?key=	cfl8DwAgMcbCs8Gzme7b7J6XabVmHOFy&location=
+    ${userInfo.address.geo.lat},${userInfo.address.geo.lng}
+    &includeRoadMetadata=true&includeNearestIntersection=true`
+  );
+  const currentLo = await locationResponse.json();
+  console.log(currentLo.results[0].locations);
   let template = `
            
                 <br><div> <h3> User Information </h3></div>
@@ -27,7 +28,7 @@ async function userIdSearch() {
                  <div> <span class="fw-bold">Zip:</span> ${userInfo.address.zipcode}</div><br>
                  <div> <span class="fw-bold"> Current Location:</span>${userInfo.address.geo.lat}-${userInfo.address.geo.lng}</div> <br>
                
-            <hr>
+          
             `;
 
   let getPost = document.createElement("button");
@@ -62,7 +63,9 @@ async function userIdSearch() {
         comments.forEach((comment) => {
           let commentContent = document.createElement("div");
 
-          commentContent.innerHTML = `<div style="color:Tomato ">Comment:</div><span class="fw-bold"> name:</span> ${comment.name}<br> <br> <span class="fw-bold">email</span>: ${comment.email} <br><br><span class="fw-bold"> body: </span>${comment.body} <br><br>`;
+          commentContent.innerHTML = `<div style="color:Tomato ">Comment:</div><span class="fw-bold">
+           name:</span> ${comment.name}<br> <br> <span class="fw-bold">email</span>: ${comment.email} 
+           <br><br><span class="fw-bold"> body: </span>${comment.body} <br><br>`;
           commentInfo.append(commentContent);
         });
       };
