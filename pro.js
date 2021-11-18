@@ -46,9 +46,9 @@ function postEmployees(users) {
 function showPosts(p){
     
     let innerdiv = document.getElementById('col');
-    let phead = document.createElement('h4')
-    phead.innerHTML = 'POSTS'
-    innerdiv.appendChild(phead)
+    let head1 = document.createElement('h4')
+    head1.innerHTML = 'POSTS'
+    innerdiv.appendChild(head1)
     from(p).subscribe(data=>{
      let post = `
        <div class="col">
@@ -62,12 +62,12 @@ function showPosts(p){
     let hr = document.createElement('hr')
        row.className = 'row';
        row.innerHTML = post;
-       let dBtn = document.createElement('button')
-       row.appendChild(dBtn)
+       let btn2 = document.createElement('button')
+       row.appendChild(btn2)
        row.appendChild(hr)
-       dBtn.onclick = createDetail
-       dBtn.className = "btn btn-warning";
-       dBtn.innerHTML = "Show Comment";
+       btn2.onclick = createDetail
+       btn2.className = "btn btn-warning";
+       btn2.innerHTML = "Show Comment";
        innerdiv.appendChild(row);
     })
 }
@@ -77,9 +77,9 @@ function createDetail(){
     
     let innerdiv = document.getElementById('col2');
     innerdiv.innerHTML=""
-    let chead = document.createElement('h4')
-    chead.innerHTML = 'Comments'
-    innerdiv.appendChild(chead)
+    let head2 = document.createElement('h4')
+    head2.innerHTML = 'Comments'
+    innerdiv.appendChild(head2)
     from(fetch('https://jsonplaceholder.typicode.com/comments?postId='+inputId).then(x=>x.json()))
     .subscribe(data=>{
      
