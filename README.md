@@ -1,6 +1,4 @@
 # CS445 Project
 
-The project will contribute 10 points to your final grade.
-
-
-Please refer to [Project.pdf](Project.pdf) for more details.
+### This is a final project of Modern Asynchronous Programming done by Mahlet Honelign.
+[See project on Git Pages](https://amayah2021.github.io/cs445-project/)
