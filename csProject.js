@@ -6,11 +6,11 @@ async function userIdSearch() {
   const IdNumber = document.getElementById("idNo").value;
   document.getElementById("posts").innerHTML = "";
   const idUser = await fetch(
-    "http://jsonplaceholder.typicode.com/users/" + IdNumber
+    "https://jsonplaceholder.typicode.com/users/" + IdNumber
   );
   const userInfo = await idUser.json();
   const locationResponse = await fetch(
-    `http://www.mapquestapi.com/geocoding/v1/reverse?key=	cfl8DwAgMcbCs8Gzme7b7J6XabVmHOFy&location=
+    `https://www.mapquestapi.com/geocoding/v1/reverse?key=	cfl8DwAgMcbCs8Gzme7b7J6XabVmHOFy&location=
     ${userInfo.address.geo.lat},${userInfo.address.geo.lng}
     &includeRoadMetadata=true&includeNearestIntersection=true`
   );
