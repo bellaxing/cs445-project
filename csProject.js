@@ -10,8 +10,8 @@ async function userIdSearch() {
   );
   const userInfo = await idUser.json();
 
-  const userInformation = document.getElementById("userInfo");
-  userInformation.innerHTML = "";
+  // const userInformation = document.getElementById("userInfo");
+  // userInformation.innerHTML = "";
   // let div1 = document.createElement("div");
   // div1.classList = "col-6";
   // userInformation.append(div1);
@@ -20,12 +20,12 @@ async function userIdSearch() {
                 <br><div> <h3> User Information </h3></div>
                 
                  <div> <span class="fw-bold"> Name: </span> ${userInfo.name}</div><br>
-                 <div> Email: ${userInfo.email}</div><br>
-                 <div> <h5 style="color:Tomato" >Addrees <h5></div>
-                 <div> Street: ${userInfo.address.street}</div><br>
-                 <div> City: ${userInfo.address.city}</div><br>
-                 <div> Zip: ${userInfo.address.zipcode}</div><br>
-                 <div> Zip: ${userInfo.address.currentLocation}</div> <br>
+                 <div> <span class="fw-bold">Email: </span>${userInfo.email}</div><br>
+                 <div> <h5 style="color:Tomato" style="text-Bold" >Addrees <h5></div>
+                 <div> <span class="fw-bold">Street:</span> ${userInfo.address.street}</div><br>
+                 <div> <span class="fw-bold"> City: </span> ${userInfo.address.city}</div><br>
+                 <div> <span class="fw-bold">Zip:</span> ${userInfo.address.zipcode}</div><br>
+                 <div> <span class="fw-bold"> Current Location:</span>${userInfo.address.geo.lat}-${userInfo.address.geo.lng}</div> <br>
                
             <hr>
             `;
@@ -62,7 +62,7 @@ async function userIdSearch() {
         comments.forEach((comment) => {
           let commentContent = document.createElement("div");
 
-          commentContent.innerHTML = `<div style="color:Tomato ">Comment:</div><span class="fw-bold"> name:</span> ${comment.name}<br> <br> <span class="fw-bold">email</span>: ${comment.email} <br><br><span class="fw-bold"> body: </span>${comment.body} <br>`;
+          commentContent.innerHTML = `<div style="color:Tomato ">Comment:</div><span class="fw-bold"> name:</span> ${comment.name}<br> <br> <span class="fw-bold">email</span>: ${comment.email} <br><br><span class="fw-bold"> body: </span>${comment.body} <br><br>`;
           commentInfo.append(commentContent);
         });
       };
