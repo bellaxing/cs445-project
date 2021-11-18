@@ -70,6 +70,35 @@ window.onload = function(){
                         commentbtn.appendChild(btn_txt)
                         post_div_child.appendChild(commentbtn)
                         //console.log()
+                        commentbtn.addEventListener("click",function(){
+                            //let sam =this.id
+                            let coment_fetch = from(fetch(`http://jsonplaceholder.typicode.com/comments?postId=${index+1}`).then(response=>response.json()))
+                            coment_fetch.subscribe(fetch_result =>{
+                                fetch_result.map(item=>{
+    
+                                    let coment_headers = document.createElement("h5")
+                                    let com_header_tex = document.createTextNode("comments")
+                                    coment_headers.appendChild(com_header_tex)
+                                    post_div.children[index].appendChild(coment_headers)
+    
+                                    let coment_name = document.createElement("p")
+                                    let com_tex = document.createTextNode(`name:-${item.name}`)
+                                    coment_name.appendChild(com_tex)
+                                   post_div.children[index].appendChild(coment_name)
+    
+                                   let coment_email = document.createElement("p")
+                                   let email_tex = document.createTextNode(`email:-${item.email}`)
+                                   coment_email.appendChild(email_tex)
+                                  post_div.children[index].appendChild(coment_email)
+    
+                                  let coment_body = document.createElement("p")
+                                   let body_tex = document.createTextNode(`body:-${item.body}`)
+                                   coment_body.appendChild(body_tex)
+                                  post_div.children[index].appendChild(coment_body)
+    
+                                })
+                            })
+                        })
                    })
                 })
                 })

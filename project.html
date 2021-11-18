@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>emploees</title>
+        <script src="project.js"></script>
+        <style>
+            #container{
+                display: flex;
+                column-gap: 3%;
+            }
+            #left_container{
+                justify-content: 30%;
+                
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            #right_container{
+                justify-self: 70%;
+                
+                padding-left: 15px;
+                padding-right: 15px;
+
+            }
+        </style>
+</head>
+<body>
+    <div id="container">
+    <div id="left_container">
+        <div id="search_div">
+            <input type="number" id="user_id"><button id="search">search</button>
+        </div>
+        <div id="user_list_div"></div>
+    </div>
+    <div id="right_container">
+        <div id="posts_div">
+            
+        <!-- <div id="comment_post"></div> -->
+    </div>
+    </div>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.6.7/rxjs.umd.js"></script>
+</body>
+</html>
