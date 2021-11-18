@@ -16,26 +16,33 @@
     ></script>
     <script src="./index.js"></script>
   </head>
-  <body style="background-color: rgb(175, 197, 190)">
+  <body style="background-color: rgb(138, 145, 151);">
     <div class="container">
 
-      <h1 style="text-align:center;font-style: italic;">Enter User Id</h1>
+      
 
       <div style="text-align:center; font-style: italic;">
+        <div class="row">
+
+       
+        <div class="col-md-6">
+          <h1 style="text-align:center;font-style: italic;">Enter User Id</h1>
           <label>Search User by Id</label>
           <input id="inp" class="form-control" /><br>
           <button id="btn" class="btn btn-success">Search</button></p>
+        </div>
 
 
+        <div class="col-md-6 mt-5" >
+          
+          <div id="user" style="margin-right: 30%;"></div>
+        </div>
       </div>
-      <div class="row me-5">
-
-        <div id="user" style="margin-right: 30%;"></div>
       </div>
 
-      <hr>
 
-      <div id="contentRow" class="row">
+
+      <div id="contentRow" class="row" style="background-color: rgba(175, 197, 190, 0.157);box-shadow: 15px 10px 15px" >
           <div id="first" class="col-5"></div>
           <div id="second" class="col-7"></div>
       </div>

@@ -43,7 +43,7 @@ function doSome(users) {
       let importPost = fetch(
         "https://jsonplaceholder.typicode.com/posts?userId=" + inputId
       );
-      importPost.then((x) => x.json()).then((p) => showPost(p));
+      importPost.then((x) => x.json()).then((data) => showPost(data));
 
       let row = document.createElement("div");
       row.className = "row";
@@ -52,13 +52,13 @@ function doSome(users) {
     });
 }
 
-function showPost(p) {
+function showPost(arr) {
   let innerdiv = document.getElementById("first");
   let phead = document.createElement("h4");
-  phead.innerHTML = "POSTS";
+  phead.innerHTML = "USER POSTS";
   phead.className = "offset-5 mb-5";
   innerdiv.appendChild(phead);
-  from(p).subscribe((data) => {
+  from(arr).subscribe((data) => {
     let post = `
        <div class="col">
 
@@ -74,23 +74,25 @@ function showPost(p) {
     let dBtn = document.createElement("button");
     row.appendChild(dBtn);
     row.appendChild(hr);
-    dBtn.onclick = comments;
+    dBtn.onclick = function () {
+      comments(data.id);
+    };
     dBtn.className = "btn btn-success";
+    dBtn.style.width = "25%";
     dBtn.innerHTML = "Show Comment";
     innerdiv.appendChild(row);
   });
 }
-function comments() {
-  let input = document.getElementById("inp");
+function comments(id) {
   let innerdiv = document.getElementById("second");
   innerdiv.innerHTML = "";
   let chead = document.createElement("h4");
-  chead.innerHTML = "Comments";
+  chead.innerHTML = "USER Comments";
   chead.className = "offset-5 mb-5";
   innerdiv.appendChild(chead);
   from(
     fetch(
-      "https://jsonplaceholder.typicode.com/comments?postId=" + input.value
+      "https://jsonplaceholder.typicode.com/comments?postId=" + id
     ).then((x) => x.json())
   ).subscribe((data) => {
     data.forEach((com) => {
