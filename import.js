@@ -6,8 +6,6 @@ window.onload = function () {
     let input = +document.getElementById("input").value;
     usersList(input);
    document.getElementById("input").value = "";
-    
-
   };
 };
 const { from } = rxjs;
@@ -16,7 +14,6 @@ const { filter, map } = rxjs.operators;
 async function usersList(input) {
   let promise = await fetch("https://jsonplaceholder.typicode.com/users");
   let employee = await promise.json();
-
 
   let row = document.getElementById("row1");
   row.innerHTML = "";
@@ -88,8 +85,7 @@ async function postList(input) {
         row.appendChild(comment);
         row.appendChild(hr);
         document.getElementById(`${emp.id}`).addEventListener("click", function(){commentList(emp.id)});
-      });
-     
+      });   
 };
 
 async function commentList(input) {
@@ -116,12 +112,6 @@ async function commentList(input) {
             row.appendChild(hr);
             console.log(row);
         });
-
-      // document.getElementById("btn-comment").addEventListener("click", function(){
-      //   row.innerHTML = "";
-      //  // commentList(input)
-      // });
-
   };
 
 
