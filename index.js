@@ -1,6 +1,11 @@
 
 window.onload = function () {
-    document.getElementById("user-btn").addEventListener("click", fetchUsers );
+    document.getElementById("user-btn").addEventListener("click",  function () {
+        const divUserInfo = document.querySelector(".user-info").innerHTML = "";
+        const divUserPost = document.querySelector(".user-post").innerHTML = "";
+
+        fetchUsers()
+     });
 }
 
 // fetchusers gets users using the url provided and with the resolved data it populates user detials on the web page.
@@ -19,10 +24,10 @@ async function fetchUsers() {
         + "<p class='ps-3'> <b>Zip</b>: " + user.address.zipcode + "</p>"
         + "<p class='ps-3'> <b>Current location</b>: " + user.address.zipcode + "</p>"
         + "<button class='btn btn-secondary' id='post-btn'> Get post</button>";
-        
-    document.getElementById("post-btn").addEventListener("click", fetchPosts)
-
+    
+    document.getElementById("post-btn").addEventListener("click", fetchPosts);
 }
+
 
 // fetchPosts gets the posts posted by a user and populate the posts on the web pages
 async function fetchPosts () {
@@ -31,7 +36,7 @@ async function fetchPosts () {
 
     userPost.forEach(function(post, index){
         let count = index + 1;
-        const divUserInfo = document.querySelector(".user-post");
+        const divUserPost = document.querySelector(".user-post");
         const divPost= document.createElement("div")
         divPost.classList = "col-12 postId-" + document.getElementById("user-id").value
         divPost.innerHTML = 
@@ -41,10 +46,11 @@ async function fetchPosts () {
         + "<p><b>Body</b>:" + post.body + "</p>"
         + `<button data-id='${count++}' class='btn btn-secondary comment-btn' type='button'> Comment </button>`
 
-        divUserInfo.appendChild(divPost)
+        divUserPost.appendChild(divPost)
     });
     fetchComments ()
 }
+
 
 // fetchComments fetches comments on button click and display the text in the web page
 async function fetchComments () {
